@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typography in HTML</title>
+  </head>
+  <body>
+    <!--
+    WHAT IS TYPOGRAPHY?
+    ————————————————————
+    - Typography refers to how TEXT is displayed on a webpage.
+    - HTML provides various tags to structure, format, and emphasize text.
+    - These tags give meaning (semantics) to the content and help browsers
+      and screen readers understand the importance of different text.
+
+
+    HEADINGS (<h1> to <h6>)
+    —————————————————————————
+    - HTML has 6 levels of headings.
+    - <h1> is the LARGEST and MOST IMPORTANT (used once per page, usually).
+    - <h6> is the SMALLEST and LEAST IMPORTANT.
+    - Headings create a hierarchy — like chapters and sub-chapters in a book.
+
+    Hierarchy:
+      <h1> — Main heading (page title)
+      <h2> — Section heading
+      <h3> — Sub-section heading
+      <h4> — Sub-sub-section
+      <h5> — Minor heading
+      <h6> — Smallest heading
+
+    Rules:
+      - Don't skip levels (don't jump from <h1> to <h4>).
+      - Use headings for STRUCTURE, not just to make text big.
+      - Only ONE <h1> per page (for SEO and accessibility).
+
+
+    PARAGRAPH (<p>)
+    —————————————————
+    - Used to define a block of text.
+    - Browser adds spacing (margin) above and below paragraphs automatically.
+    - Multiple spaces and line breaks inside <p> are collapsed into one space.
+      (Browser ignores extra whitespace — this is called "whitespace collapsing")
+
+
+    PREFORMATTED TEXT (<pre>)
+    ——————————————————————————
+    - Preserves EXACT spacing, tabs, and line breaks as written in the code.
+    - Uses a monospace font (like a code editor).
+    - Useful for displaying code, addresses, poetry, ASCII art.
+    - Unlike <p>, it does NOT collapse whitespace.
+
+
+    LINE BREAK (<br />)
+    —————————————————————
+    - Forces text to the next line WITHOUT starting a new paragraph.
+    - Self-closing tag (no closing tag needed).
+    - Use sparingly — for addresses, poems, etc. Not for spacing (use CSS for that).
+
+
+    HORIZONTAL RULE (<hr />)
+    ——————————————————————————
+    - Draws a horizontal line across the page.
+    - Used as a thematic break / separator between sections.
+    - Self-closing tag.
+
+
+    TEXT FORMATTING TAGS
+    —————————————————————
+
+    1. BOLD TEXT:
+       <b>text</b>        — Makes text bold (visual only, no extra meaning)
+       <strong>text</strong> — Makes text bold AND tells the browser this text
+                              is IMPORTANT (semantic meaning, better for SEO
+                              and screen readers)
+
+       When to use which?
+         - Use <strong> when the text is genuinely important.
+         - Use <b> when you just want visual boldness without meaning.
+
+    2. ITALIC TEXT:
+       <i>text</i>        — Makes text italic (visual only, no extra meaning)
+       <em>text</em>      — Makes text italic AND adds EMPHASIS (semantic)
+
+       When to use which?
+         - Use <em> when you want to stress/emphasize a word.
+         - Use <i> for technical terms, foreign words, thoughts — visual only.
+
+    3. HIGHLIGHTED TEXT:
+       <mark>text</mark>  — Highlights text with a yellow background.
+                            Used to mark text that is relevant or searched for.
+
+    4. STRIKETHROUGH TEXT:
+       <strike>text</strike>  — Draws a line through the text (DEPRECATED in HTML5)
+       <del>text</del>        — Correct way in HTML5. Indicates DELETED/removed content.
+       <s>text</s>            — Indicates content that is no longer accurate/relevant.
+
+    5. UNDERLINE:
+       <u>text</u>        — Underlines text.
+                            Use carefully — users may confuse it with a link.
+
+    6. SMALL TEXT:
+       <small>text</small> — Makes text smaller. Used for fine print, disclaimers.
+
+    7. SUBSCRIPT & SUPERSCRIPT:
+       <sub>text</sub>    — Text appears below the baseline (H<sub>2</sub>O = H2O)
+       <sup>text</sup>    — Text appears above the baseline (x<sup>2</sup> = x2)
+
+
+    SPECIAL CHARACTERS / HTML ENTITIES
+    ————————————————————————————————————
+    - Some characters have special meaning in HTML (like < > & ").
+    - To display them as text, use HTML entities:
+
+      &nbsp;    — Non-breaking space (extra space that won't collapse)
+      &lt;      — Less than sign: <
+      &gt;      — Greater than sign: >
+      &amp;     — Ampersand: &
+      &quot;    — Double quote: "
+      &copy;    — Copyright symbol: (c)
+      &rarr;    — Right arrow: ->
+      &hearts;  — Heart symbol
+
+    - &nbsp; is commonly used to add extra space between words/elements.
+
+
+    SEMANTIC vs NON-SEMANTIC (IMPORTANT CONCEPT)
+    ——————————————————————————————————————————————
+
+    SEMANTIC (has meaning):         NON-SEMANTIC (visual only):
+      <strong>  = important text      <b>  = just bold
+      <em>      = emphasized text     <i>  = just italic
+      <del>     = deleted content     <strike> = just strikethrough
+      <mark>    = highlighted         (no non-semantic equivalent)
+
+    Why does this matter?
+      - Screen readers use semantic tags to help visually impaired users.
+      - Search engines (Google) use them to understand content importance.
+      - Always prefer semantic tags over non-semantic ones.
+
+
+    SUMMARY TABLE
+    ——————————————
+    Tag             Purpose                          Type
+    ——————————————  ———————————————————————————————  ————————————
+    <h1> to <h6>   Headings (hierarchy)             Block
+    <p>             Paragraph                        Block
+    <pre>           Preformatted text                Block
+    <br />          Line break                       Inline/void
+    <hr />          Horizontal rule (separator)      Block/void
+    <b>             Bold (visual)                    Inline
+    <strong>        Bold + important (semantic)      Inline
+    <i>             Italic (visual)                  Inline
+    <em>            Italic + emphasis (semantic)     Inline
+    <mark>          Highlight                        Inline
+    <del>           Deleted/strikethrough            Inline
+    <s>             No longer accurate               Inline
+    <u>             Underline                        Inline
+    <small>         Smaller text                     Inline
+    <sub>           Subscript                        Inline
+    <sup>           Superscript                      Inline
+
+    ========================================================================
+    -->
+
+    <!-- HEADINGS -->
+    <h1>CHAPTER-1-HTML</h1>
+    <h2>Topic: Typography</h2>
+    <h3>This is heading 3</h3>
+    <h4>This is heading 4</h4>
+    <h5>This is heading 5</h5>
+    <h6>This is heading 6</h6>
+
+    <hr />
+
+    <!-- PARAGRAPH — whitespace is collapsed by the browser -->
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. A, enim. Ad
+      tempore beatae impedit. Quia reiciendis nobis beatae ut fuga odit eligendi
+      consequuntur ipsam distinctio praesentium similique labore, necessitatibus
+      dicta! In incidunt distinctio, qui iusto voluptate sit veniam adipisci,
+      enim quas omnis deleniti assumenda optio necessitatibus magni quod? Quia,
+      cum?
+    </p>
+
+    <!-- PRE — preserves exact whitespace and line breaks -->
+    <pre>
+        To,
+        Keshav Kumar,
+        123, Noida, Delhi
+        India - 201301
+    </pre>
+
+    <hr />
+
+    <!-- TEXT FORMATTING EXAMPLES -->
+
+    <!-- mark — highlights text -->
+    <p>My name is <mark>Vikas</mark></p>
+
+    <!-- b vs strong -->
+    <b>This is bold (visual only)</b>
+    <br />
+    <strong>This is strong (bold + semantic importance)</strong>
+
+    <br /><br />
+
+    <!-- i vs em -->
+    <i>This is italic (visual only)</i>
+    <br />
+    <em>This is emphasized (italic + semantic meaning)</em>
+
+    <br /><br />
+
+    <!-- strikethrough — use <del> instead of <strike> in HTML5 -->
+    <strike>This uses strike (deprecated)</strike>
+    <br />
+    <del>This uses del (correct in HTML5)</del>
+
+    <br /><br />
+
+    <!-- other formatting -->
+    <small>This is small text</small>
+    <br />
+    <u>This is underlined text</u>
+    <br />
+    H<sub>2</sub>O — subscript example
+    <br />
+    x<sup>2</sup> + y<sup>2</sup> — superscript example
+
+    <br /><br />
+
+    <!-- HTML entities -->
+    <p>Extra&nbsp;&nbsp;&nbsp;&nbsp;spaces using &amp;nbsp;</p>
+    <p>Less than: &lt; | Greater than: &gt; | Copyright: &copy;</p>
+  </body>
+</html>

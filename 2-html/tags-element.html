@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tags and Elements</title>
+  </head>
+  <body>
+    <!--
+    WHAT IS A TAG?
+    ——————————————
+    - A tag is a keyword surrounded by angle brackets: < >
+    - Tags tell the browser HOW to display or structure content.
+    - Tags come in two types:
+
+      1. Opening Tag:  <p>
+      2. Closing Tag:  </p>   (has a forward slash before the tag name)
+
+    - Some tags are SELF-CLOSING (they don't need a closing tag):
+      <br />      — line break
+      <hr />      — horizontal rule
+      <img />     — image
+      <input />   — input field
+      <meta />    — metadata
+
+    Examples of Tags:
+      <h1>        — heading tag
+      <p>         — paragraph tag
+      <a>         — anchor (link) tag
+      <div>       — division/container tag
+      <span>      — inline container tag
+
+
+    WHAT IS AN ELEMENT?
+    ————————————————————
+    - An element is the COMPLETE structure: opening tag + content + closing tag.
+    - It is the whole "thing" from start to end.
+
+    Structure:
+      <tagname> content </tagname>
+      |________|_______|__________|
+       Opening   Content   Closing
+         Tag                 Tag
+
+      |___________________________|
+             FULL ELEMENT
+
+    Example:
+      <p>Hello World</p>
+
+      Here:
+        <p>           = Opening Tag
+        Hello World   = Content (what the user sees)
+        </p>          = Closing Tag
+        <p>Hello World</p> = The ENTIRE Element
+
+
+    VISUAL BREAKDOWN
+    —————————————————
+
+      Element:     <h1> Welcome to FSRNL-71 </h1>
+                   |__|  |________________|  |___|
+                    |           |               |
+               Opening Tag   Content      Closing Tag
+
+
+      Self-Closing Element (no content, no closing tag):
+                   <br />
+                   <img src="photo.jpg" alt="photo" />
+                   <input type="text" />
+
+
+    TAG vs ELEMENT — KEY DIFFERENCE
+    ————————————————————————————————
+
+      TAG     = Just the markup keyword in angle brackets (<p>, </p>)
+      ELEMENT = The full package (opening tag + content + closing tag)
+
+      Think of it this way:
+        - Tag is like a label on a box
+        - Element is the entire box (label + whatever is inside)
+
+      In daily conversation, developers often use "tag" and "element"
+      interchangeably, but technically they are different.
+
+
+    TYPES OF ELEMENTS
+    ——————————————————
+
+    1. PAIRED ELEMENTS (have opening + closing tags):
+       <h1>Heading</h1>
+       <p>Paragraph</p>
+       <a href="#">Link</a>
+       <div>Container</div>
+       <ul><li>List item</li></ul>
+
+    2. SELF-CLOSING / VOID ELEMENTS (no closing tag, no content):
+       <br />          — line break
+       <hr />          — horizontal line
+       <img />         — image
+       <input />       — form input
+       <meta />        — page metadata
+       <link />        — stylesheet link
+       <source />      — media source
+
+       Note: In HTML5, the trailing slash is optional.
+             <br> and <br /> are both valid.
+
+
+    NESTED ELEMENTS
+    ————————————————
+    - Elements can be placed INSIDE other elements.
+    - The outer element is called the PARENT.
+    - The inner element is called the CHILD.
+
+    Example:
+      <div>
+        <h1>Title</h1>
+        <p>This is a paragraph inside a div.</p>
+      </div>
+
+      Here:
+        <div> is the PARENT element
+        <h1> and <p> are CHILD elements
+
+
+    ATTRIBUTES (bonus)
+    ———————————————————
+    - Tags can have ATTRIBUTES that provide extra information.
+    - Attributes are written inside the opening tag.
+
+    Syntax:
+      <tagname attribute="value"> content </tagname>
+
+    Examples:
+      <a href="https://google.com">Google</a>
+      <img src="photo.jpg" alt="A photo" />
+      <input type="email" placeholder="Enter email" />
+
+      Here:
+        href, src, alt, type, placeholder = attributes
+        They give the browser additional instructions about the element.
+
+
+    SUMMARY
+    ————————
+    - TAG      = the keyword in angle brackets (<p>, <h1>, <img>)
+    - ELEMENT  = opening tag + content + closing tag (the complete unit)
+    - VOID/SELF-CLOSING = elements with no content and no closing tag
+    - ATTRIBUTES = extra info added inside the opening tag
+    - NESTING  = putting elements inside other elements (parent-child)
+
+    ========================================================================
+    -->
+
+    <!-- Examples for students to see in the browser -->
+
+    <h1>This is a Heading Element</h1>
+    <p>This is a Paragraph Element</p>
+    <a href="https://google.com">This is an Anchor Element (Link)</a>
+
+    <br />
+    <br />
+
+    <!-- Self-closing elements -->
+    <hr />
+    <img src="https://via.placeholder.com/200" alt="Placeholder Image" />
+    <br />
+    <input type="text" placeholder="This is an input element" />
+  </body>
+</html>

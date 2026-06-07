@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multimedia in HTML</title>
+  </head>
+  <body>
+    <!--
+    WHAT IS MULTIMEDIA IN HTML?
+    ————————————————————————————
+    - Multimedia means content that uses images, audio, or video.
+    - HTML5 introduced native support for audio and video
+      (before HTML5, we needed Flash plugins).
+    - Main multimedia tags: <img>, <video>, <audio>, <iframe>
+
+
+    ========================================================================
+    1. IMAGE TAG (<img>)
+    ========================================================================
+
+    Syntax:
+      <img src="path/url" alt="description" />
+
+    - Self-closing tag (no closing tag needed).
+    - Used to embed images on a webpage.
+
+    ATTRIBUTES:
+    ———————————
+    src        — Source of the image (URL or local file path)
+                 This is REQUIRED. Without it, no image loads.
+
+    alt        — Alternate text. Shows when:
+                 - Image fails to load (broken link, slow network)
+                 - Screen readers read this for visually impaired users
+                 - ALWAYS add alt text (accessibility + SEO)
+
+    width      — Sets the width of the image (in px or %)
+    height     — Sets the height of the image (in px or %)
+                 Tip: Set only ONE (width OR height) to maintain aspect ratio.
+
+    loading    — Controls when the image loads:
+                 "eager" = load immediately (default)
+                 "lazy"  = load only when user scrolls near it (performance boost)
+
+    title      — Shows a tooltip when user hovers over the image.
+
+    Examples:
+      <img src="photo.jpg" alt="A sunset" width="400" />
+      <img src="https://example.com/cat.png" alt="Cat photo" loading="lazy" />
+
+    IMAGE SOURCE TYPES:
+      - Local file:   src="images/photo.jpg"  (relative path)
+      - Full URL:     src="https://example.com/photo.jpg" (absolute path)
+      - Base64:       src="data:image/png;base64,..." (embedded, rare)
+
+    SUPPORTED FORMATS:
+      .jpg / .jpeg  — Photos, compressed, small file size
+      .png          — Supports transparency, larger file size
+      .gif          — Animations, limited colors
+      .svg          — Vector graphics, scales without losing quality
+      .webp         — Modern format, best compression, not all browsers support
+
+
+    ========================================================================
+    2. VIDEO TAG (<video>)
+    ========================================================================
+
+    Syntax:
+      <video src="video.mp4" controls width="400"></video>
+
+    - Used to embed video content directly in the page.
+    - No need for external plugins (works natively in HTML5).
+
+    ATTRIBUTES:
+    ———————————
+    src        — Source/path of the video file
+    controls   — Shows play, pause, volume, seek bar, fullscreen buttons
+                 WITHOUT this, user cannot interact with the video!
+    width      — Width of the video player (in px)
+    height     — Height of the video player (in px)
+    autoplay   — Video starts playing automatically on page load
+                 Note: Most browsers BLOCK autoplay unless "muted" is also set.
+    muted      — Video starts with no sound (required for autoplay to work)
+    loop       — Video replays from the beginning when it ends
+    poster     — Shows a thumbnail/image before the video plays
+                 Example: poster="thumbnail.jpg"
+    preload    — How much to load before user clicks play:
+                 "auto"     = load the whole video
+                 "metadata" = load only duration/dimensions
+                 "none"     = don't preload anything
+
+    Example with all attributes:
+      <video src="intro.mp4" controls width="500" autoplay muted loop poster="cover.jpg"></video>
+
+    MULTIPLE SOURCES (Fallback):
+    ——————————————————————————————
+    - Different browsers support different video formats.
+    - Use <source> tags inside <video> to provide multiple formats.
+    - Browser picks the FIRST format it supports.
+    - Text at the bottom shows if NO format is supported.
+
+      <video controls width="400">
+          <source src="video.mp4" type="video/mp4" />
+          <source src="video.webm" type="video/webm" />
+          <source src="video.ogg" type="video/ogg" />
+          Your browser does not support the video tag.
+      </video>
+
+    SUPPORTED VIDEO FORMATS:
+      .mp4   — Most widely supported (use this as primary)
+      .webm  — Good compression, open format
+      .ogg   — Open source, less common
+
+
+    ========================================================================
+    3. AUDIO TAG (<audio>)
+    ========================================================================
+
+    Syntax:
+      <audio src="song.mp3" controls></audio>
+
+    - Used to embed audio/sound on a webpage.
+    - Works the same way as <video> but without visual display.
+
+    ATTRIBUTES:
+    ———————————
+    src        — Source/path of the audio file
+    controls   — Shows play, pause, volume, seek bar
+                 WITHOUT this, audio is invisible and uncontrollable!
+    autoplay   — Starts playing automatically (often blocked by browsers)
+    muted      — Starts muted
+    loop       — Replays when finished
+    preload    — "auto" | "metadata" | "none"
+
+    Example:
+      <audio src="podcast.mp3" controls></audio>
+
+    MULTIPLE SOURCES (Fallback):
+      <audio controls>
+          <source src="song.mp3" type="audio/mpeg" />
+          <source src="song.ogg" type="audio/ogg" />
+          <source src="song.wav" type="audio/wav" />
+          Your browser does not support the audio tag.
+      </audio>
+
+    SUPPORTED AUDIO FORMATS:
+      .mp3   — Most common, widely supported
+      .ogg   — Open source format
+      .wav   — Uncompressed, large file size, high quality
+      .aac   — Used by Apple/iTunes
+
+
+    ========================================================================
+    4. IFRAME TAG (<iframe>)
+    ========================================================================
+
+    Syntax:
+      <iframe src="https://example.com" width="600" height="400"></iframe>
+
+    - Embeds ANOTHER webpage inside your webpage.
+    - Used for: YouTube videos, Google Maps, external websites.
+
+    ATTRIBUTES:
+    ———————————
+    src        — URL of the page to embed
+    width      — Width of the iframe
+    height     — Height of the iframe
+    title      — Description for accessibility
+    frameborder — "0" removes the border (deprecated, use CSS instead)
+    allowfullscreen — Allows fullscreen mode (for videos)
+
+    Common Use Cases:
+      - Embedding YouTube videos
+      - Embedding Google Maps
+      - Embedding external tools/widgets
+
+    Example (YouTube):
+      <iframe
+          src="https://www.youtube.com/embed/VIDEO_ID"
+          width="560"
+          height="315"
+          title="Video title"
+          allowfullscreen>
+      </iframe>
+
+    Note: Not all websites allow being embedded in iframes
+          (they block it using X-Frame-Options header).
+
+    BEST PRACTICES
+    ———————————————
+    - Always add "alt" to images (accessibility is not optional).
+    - Always add "controls" to audio/video (let users control playback).
+    - Use "loading=lazy" on images below the fold (improves page speed).
+    - Provide multiple <source> formats for cross-browser support.
+    - Use .mp4 for video and .mp3 for audio as primary formats.
+    - Compress images before uploading (use tools like TinyPNG).
+    - Use <figure> + <figcaption> when media needs a description.
+    -->
+
+    <!-- IMAGE EXAMPLES -->
+    <h2>Image Tag</h2>
+
+    <!-- Basic image with alt text and width -->
+    <img
+      src="https://images.pexels.com/photos/15228018/pexels-photo-15228018.jpeg"
+      alt="This is an elephant image"
+      width="400"
+    />
+
+    <hr />
+
+    <!-- VIDEO EXAMPLES -->
+    <h2>Video Tag</h2>
+
+    <!-- Video with controls, autoplay (muted required for autoplay) -->
+    <video
+      src="https://www.pexels.com/download/video/37969806/"
+      controls
+      width="400"
+      autoplay
+      loop
+      muted
+    ></video>
+
+    <!-- Video with multiple sources (fallback) -->
+    <!--
+    <video controls width="400">
+        <source src="video.mp4" type="video/mp4" />
+        <source src="video.webm" type="video/webm" />
+        <source src="video.ogg" type="video/ogg" />
+        Your browser does not support the video tag.
+    </video>
+    -->
+
+    <hr />
+
+    <!-- AUDIO EXAMPLES -->
+    <h2>Audio Tag</h2>
+
+    <audio src="vikas.mp3" controls></audio>
+
+    <hr />
+
+    <!-- IFRAME EXAMPLE -->
+    <h2>Iframe Tag</h2>
+
+    <iframe
+      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+      width="560"
+      height="315"
+      title="Sample YouTube Video"
+      allowfullscreen
+    ></iframe>
+  </body>
+</html>
