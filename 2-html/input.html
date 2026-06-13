@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input Elements in HTML5</title>
+  </head>
+  <body>
+    <!--
+      ============================================
+      INPUT ELEMENTS IN HTML5 - NOTES
+      ============================================
+
+      The <input> tag is used to collect user data in forms.
+      It is a VOID/SELF-CLOSING element (no closing tag needed).
+
+      SYNTAX:
+        <input type="type" name="name" id="id" />
+
+      COMMON ATTRIBUTES (apply to most input types):
+        type         → Defines the kind of input (text, email, password, etc.)
+        name         → Key name sent to the server (required for form submission)
+        id           → Unique identifier (used to link with <label for="id">)
+        value        → Default/pre-filled value
+        placeholder  → Hint text shown when field is empty
+        required     → Field must be filled before submission
+        disabled     → Field is greyed out and not submittable
+        readonly     → Field is visible but not editable
+        autofocus    → Automatically focuses this field on page load
+        autocomplete → "on" or "off" for browser autofill
+        maxlength    → Maximum characters allowed
+        minlength    → Minimum characters required
+        pattern      → Regex pattern for validation (e.g., pattern="[A-Za-z]+")
+
+      INPUT TYPES IN HTML5:
+        text      → Single-line text input
+        email     → Email input (validates @ format)
+        password  → Masked input (dots/asterisks)
+        number    → Numeric input (has min, max, step attributes)
+        tel       → Phone number input
+        url       → URL input (validates http:// format)
+        search    → Search box (may have clear button)
+        date      → Date picker (YYYY-MM-DD)
+        time      → Time picker (HH:MM)
+        datetime-local → Date + time combined picker
+        month     → Month/year picker
+        week      → Week number picker
+        color     → Color picker (returns hex value like #ff0000)
+        range     → Slider (has min, max, step attributes)
+        file      → File upload (use accept=".pdf,.jpg" to filter types)
+                    multiple attribute allows selecting multiple files
+        radio     → Single selection from a group
+                    (all radio buttons in a group must share same "name")
+        checkbox  → Multiple selections (true/false toggle)
+        hidden    → Hidden field (not visible, used to pass data)
+        submit    → Submit button (submits the form)
+        reset     → Reset button (clears all form fields)
+        button    → Generic button (no default action)
+        image     → Image as submit button (src="img.png")
+
+      OTHER FORM ELEMENTS (not <input> but related):
+        <select>    → Dropdown menu
+                      <option value="val">Label</option>
+                      Attributes: multiple, size
+        <textarea>  → Multi-line text input
+                      Attributes: rows, cols, maxlength, resize (CSS)
+        <label>     → Label for an input (improves accessibility)
+                      Use for="inputId" to associate with an input
+        <fieldset>  → Groups related form elements
+        <legend>    → Caption for a <fieldset>
+        <datalist>  → Predefined options for autocomplete
+                      <input list="id"> + <datalist id="id">
+        <output>    → Displays calculation result
+
+      RADIO BUTTON NOTES:
+        - All radios in a group MUST have the same "name" attribute
+        - Only ONE can be selected at a time within the same name group
+        - Use "value" to differentiate which option was selected
+        - Use "checked" to pre-select a default option
+
+      CHECKBOX NOTES:
+        - Each checkbox is independent (unlike radio)
+        - Use same "name" to group related checkboxes
+        - Use "checked" attribute for pre-checked state
+
+      VALIDATION ATTRIBUTES:
+        required        → Must be filled
+        min / max       → For number, date, range
+        step            → Increment value (e.g., step="0.01" for decimals)
+        pattern         → Regex validation
+        minlength/maxlength → Character limits
+        multiple        → Allow multiple values (file, email)
+
+      ACCESSIBILITY BEST PRACTICES:
+        - Always pair <input> with <label for="id">
+        - Use fieldset + legend to group related inputs
+        - Add aria-label or aria-describedby when label is not visible
+        - Ensure proper tab order with tabindex if needed
+
+      FORM SUBMISSION:
+        - Wrap inputs in <form action="url" method="GET|POST">
+        - GET → Data in URL (visible, limited size)
+        - POST → Data in request body (hidden, no size limit)
+        - Each input needs a "name" attribute to be submitted
+      ============================================
+    -->
+
+    <!-- type="text" - basic single-line text input -->
+    <input type="text" placeholder="enter your first name" />
+    <br />
+
+    <!-- type="email" - validates email format (must contain @) -->
+    <input
+      type="email"
+      name="email"
+      id=""
+      placeholder="enter your valid email"
+    />
+    <br />
+
+    <!-- type="password" - input is masked for security -->
+    <input type="password" name="" id="" placeholder="password" />
+    <br />
+
+    <!-- type="number" - only numeric values; use min, max, step -->
+    <input type="number" name="" id="" />
+
+    <!-- type="color" - opens a color picker; returns hex value -->
+    <input type="color" name="" id="" />
+    <br />
+
+    <!-- type="file" - file upload; use accept="" to limit file types -->
+    <input type="file" name="" id="" />
+    <br />
+
+    <!-- type="radio" - single selection; same "name" = same group -->
+    <input type="radio" name="" id="" />
+    <label for="">Male</label>
+    <input type="radio" name="" id="" />
+    <label for="">Female</label>
+    <br />
+
+    <!-- type="range" - slider control; use min, max, step -->
+    <input type="range" name="" id="" />
+    <br />
+
+    <!-- <select> - dropdown menu with <option> children -->
+    <select name="" id="">
+      <option value="">select your meal type</option>
+      <option value="">Veg</option>
+      <option value="">Non-veg</option>
+      <option value="">Vegan</option>
+    </select>
+    <br />
+
+    <!-- <textarea> - multi-line text input; rows/cols set size -->
+    <textarea name="" id="" rows="5"></textarea>
+    <br />
+
+    <!-- type="checkbox" - independent toggle (can select multiple) -->
+    <input type="checkbox" name="" id="" />
+    <label for="">agree to term</label>
+    <br />
+
+    <!-- type="submit" - submits the form data to the server -->
+    <input type="submit" value="submit" />
+  </body>
+</html>

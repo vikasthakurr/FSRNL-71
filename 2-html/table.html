@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tables in HTML</title>
+  </head>
+  <body>
+    <!--
+      ============================================
+      TABLES IN HTML - NOTES
+      ============================================
+
+      Tables are used to display data in rows and columns.
+      They should ONLY be used for tabular data, NOT for page layout.
+
+      TABLE STRUCTURE:
+        <table>    → Container for the entire table
+        <thead>    → Groups the header row(s)
+        <tbody>    → Groups the body/data rows
+        <tfoot>    → Groups the footer row(s) (e.g., totals, summaries)
+        <tr>       → Table Row - defines a row
+        <th>       → Table Header cell - bold & centered by default
+        <td>       → Table Data cell - normal weight & left-aligned
+        <caption>  → Table caption/title (placed right after <table> tag)
+
+      IMPORTANT ATTRIBUTES:
+        border="1"      → Adds a border (deprecated in HTML5, use CSS instead)
+        colspan="2"     → A cell spans across 2 columns
+        rowspan="3"     → A cell spans across 3 rows
+        scope="col"     → Indicates <th> is header for a column (accessibility)
+        scope="row"     → Indicates <th> is header for a row (accessibility)
+
+      BEST PRACTICES:
+        - Always wrap <th> inside a <tr> within <thead>
+        - Use <th> for header cells (not <td>) for semantics & accessibility
+        - Use scope attribute on <th> for screen readers
+        - Use CSS for styling (border, padding, width) instead of HTML attributes
+        - Add <caption> for a descriptive table title
+        - Use <colgroup> and <col> to style entire columns
+
+      CSS STYLING (common properties):
+        border-collapse: collapse;  → Merges cell borders into one line
+        border-spacing: 0;          → Removes space between cells
+        text-align: center/left;    → Aligns cell text
+        padding: 8px;               → Adds space inside cells
+        nth-child(even/odd)         → Zebra striping for rows
+
+      COLGROUP EXAMPLE:
+        <colgroup>
+          <col style="background-color: yellow;" />
+          <col span="2" style="background-color: lightblue;" />
+        </colgroup>
+
+      ACCESSIBILITY:
+        - Use <th> with scope for proper header-cell association
+        - Add <caption> to describe the table's purpose
+        - Avoid using tables for layout (use CSS Grid/Flexbox instead)
+        - Use aria-describedby if extra context is needed
+      ============================================
+    -->
+
+    <!-- border="1" is used here for quick visibility; prefer CSS in real projects -->
+    <table border="1">
+      <!-- thead wraps header row(s); <th> elements are header cells -->
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>age</th>
+          <th>mobile-no</th>
+        </tr>
+      </thead>
+      <!-- tbody wraps the data rows -->
+      <tbody>
+        <tr>
+          <td>Vikas</td>
+          <td>27</td>
+          <td>9068003323</td>
+        </tr>
+        <tr>
+          <td>Vikas</td>
+          <td>27</td>
+          <td>9068003323</td>
+        </tr>
+        <tr>
+          <td>Vikas</td>
+          <td>27</td>
+          <td>9068003323</td>
+        </tr>
+        <tr>
+          <td>Vikas</td>
+          <td>27</td>
+          <td>9068003323</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

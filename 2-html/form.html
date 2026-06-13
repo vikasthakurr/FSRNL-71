@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms in HTML5</title>
+  </head>
+  <body>
+    <!--
+      ============================================
+      FORMS IN HTML5 - NOTES
+      ============================================
+
+      The <form> element is a container for collecting user input
+      and sending it to a server for processing.
+
+      SYNTAX:
+        <form action="URL" method="GET|POST">
+          ...form controls here...
+        </form>
+
+      ============================================
+      FORM ATTRIBUTES:
+      ============================================
+
+      action      → URL where form data is sent on submission
+                    • Can be a relative path: action="submit.php"
+                    • Can be an absolute URL: action="https://api.com/login"
+                    • If omitted, submits to the current page URL
+
+      method      → HTTP method used to send data
+                    • GET  → Data appended to URL as query string (?key=value)
+                              - Visible in address bar
+                              - Limited data size (~2048 chars)
+                              - Bookmarkable
+                              - Use for: search, filters, non-sensitive data
+                    • POST → Data sent in HTTP request body
+                              - NOT visible in URL
+                              - No size limitation
+                              - NOT bookmarkable
+                              - Use for: login, signup, file uploads, sensitive data
+
+      enctype     → How form data is encoded before sending (used with POST)
+                    • application/x-www-form-urlencoded (default)
+                      - Key=value pairs, special chars encoded
+                    • multipart/form-data
+                      - REQUIRED for file uploads (<input type="file">)
+                    • text/plain
+                      - Spaces converted to +, no other encoding
+
+      target      → Where to display the response after submission
+                    • _self   → Same tab (default)
+                    • _blank  → New tab/window
+                    • _parent → Parent frame
+                    • _top    → Full window
+
+      autocomplete → Enable/disable browser autofill for the entire form
+                    • "on" (default) → Browser suggests saved values
+                    • "off" → Disables autofill suggestions
+
+      novalidate  → Disables built-in HTML5 validation on submit
+                    (boolean attribute, no value needed)
+                    e.g., <form novalidate>
+
+      name        → Name of the form (used for JS access: document.forms["name"])
+
+      ============================================
+      FORM ELEMENTS (children of <form>):
+      ============================================
+
+      <input>     → Various input types (text, email, password, etc.)
+      <textarea>  → Multi-line text area
+      <select>    → Dropdown list
+      <button>    → Clickable button (more flexible than <input type="submit">)
+      <label>     → Associates text with a form control (accessibility)
+      <fieldset>  → Groups related controls visually with a border
+      <legend>    → Title/caption for a <fieldset>
+      <datalist>  → Autocomplete suggestions for <input>
+      <output>    → Displays result of a calculation
+
+      ============================================
+      BUTTON vs INPUT[type=submit]:
+      ============================================
+      <input type="submit" value="Login" />
+        → Self-closing, text set via value attribute only
+
+      <button type="submit">Login</button>
+        → Can contain HTML (icons, images, styled text)
+        → More flexible and preferred in modern HTML
+
+      Button types:
+        • type="submit"  → Submits the form (default inside <form>)
+        • type="reset"   → Resets all fields to default values
+        • type="button"  → No default action (use with JavaScript)
+
+      ============================================
+      FORM SUBMISSION FLOW:
+      ============================================
+      1. User fills in form fields
+      2. User clicks submit button
+      3. Browser validates fields (unless novalidate)
+      4. Browser encodes data based on enctype
+      5. Data is sent to the "action" URL using the "method"
+      6. Server processes data and sends a response
+      7. Browser displays the response in the "target"
+
+      ============================================
+      BEST PRACTICES:
+      ============================================
+      - Always use <label> with for="inputId" for accessibility
+      - Use POST for sensitive data (passwords, personal info)
+      - Use GET for search/filter forms
+      - Add enctype="multipart/form-data" when uploading files
+      - Group related fields with <fieldset> and <legend>
+      - Use required, pattern, min, max for client-side validation
+      - Always validate on server side too (client validation can be bypassed)
+      - Use name attribute on all inputs (needed for data to be submitted)
+      ============================================
+    -->
+
+    <!-- action="table.html" → redirects to table.html after submit -->
+    <!-- method="post" → form data sent in request body (hidden from URL) -->
+    <form action="table.html" method="post">
+      <input
+        type="text"
+        placeholder="enter username"
+        name="username"
+        id="username"
+      />
+      <br />
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="enter your email"
+      />
+      <br />
+      <input type="submit" value="Login" />
+    </form>
+  </body>
+</html>

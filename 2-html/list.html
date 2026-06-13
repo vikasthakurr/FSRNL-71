@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lists in HTML5</title>
+  </head>
+  <body>
+    <!--
+      ============================================
+      LISTS IN HTML5 - NOTES
+      ============================================
+
+      HTML5 provides 3 types of lists:
+
+      1. UNORDERED LIST (<ul>)
+         - Displays items with bullet points (disc by default)
+         - Used when the order of items does NOT matter
+         - Each item is wrapped in <li> (list item) tag
+         - list-style-type can be changed via CSS: disc, circle, square, none
+
+      2. ORDERED LIST (<ol>)
+         - Displays items with a numbered/sequential marker
+         - Used when the order of items MATTERS (steps, rankings, etc.)
+         - Each item is wrapped in <li> tag
+         - Attributes:
+            • type="1" → Numbers (default): 1, 2, 3...
+            • type="A" → Uppercase letters: A, B, C...
+            • type="a" → Lowercase letters: a, b, c...
+            • type="I" → Uppercase Roman numerals: I, II, III...
+            • type="i" → Lowercase Roman numerals: i, ii, iii...
+            • start="5" → Start numbering from 5
+            • reversed → Reverses the numbering order
+
+      3. DESCRIPTION LIST (<dl>)
+         - Used for term-definition pairs (like a glossary)
+         - <dl> → Description list container
+         - <dt> → Description term (the word/title)
+         - <dd> → Description details (the definition/explanation)
+         - A single <dt> can have multiple <dd> elements
+
+      NESTING:
+         - Lists can be nested inside each other
+         - e.g., <ul> inside <ol>, or <ol> inside <ul>
+
+      SEMANTIC USAGE:
+         - Use <ul> for navigation menus
+         - Use <ol> for step-by-step instructions
+         - Use <dl> for FAQs, metadata, glossaries
+      ============================================
+    -->
+
+    <!-- Unordered List - items displayed with bullets -->
+    <ul>
+      <li>item-1</li>
+      <li>item-2</li>
+      <li>item-3</li>
+    </ul>
+    <!-- Ordered List - type="I" gives uppercase Roman numerals -->
+    <ol type="I">
+      <li>item-1</li>
+      <li>item-2</li>
+      <li>item-3</li>
+    </ol>
+
+    <!-- Description List - term and definition pairs -->
+    <dl>
+      <dt>Vikas</dt>
+      <dd>vikas is SDE at GFG</dd>
+      <dt>Vikas</dt>
+      <dd>vikas is SDE at GFG</dd>
+      <dt>Vikas</dt>
+      <dd>vikas is SDE at GFG</dd>
+    </dl>
+  </body>
+</html>
