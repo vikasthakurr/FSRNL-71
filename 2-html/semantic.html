@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--
+      ===== SEMANTIC TAGS IN HTML - NOTES =====
+
+      1. What are Semantic Tags?
+         - HTML elements that clearly describe their meaning/purpose
+           to both the browser and the developer.
+         - They tell WHAT the content IS, not just how it looks.
+         - Non-semantic tags: <div>, <span> (no meaning)
+         - Semantic tags: <header>, <article>, <figure> (meaningful)
+
+      2. Why Use Semantic Tags?
+         - Accessibility: Screen readers understand page structure.
+         - SEO: Search engines better index meaningful content.
+         - Readability: Code is self-documenting and easier to maintain.
+         - Consistency: Standard structure across web pages.
+
+      3. List of Semantic Tags with Their Use:
+
+         ┌──────────────────────────────────────────────────────────────────────┐
+         │ Tag              │ Use / Purpose                                     │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ STRUCTURAL / LAYOUT TAGS                                            │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ <header>         │ Top section of page or section (logo, nav, title) │
+         │ <nav>            │ Navigation links (menus, breadcrumbs)             │
+         │ <main>           │ Primary content of the page (only one per page)   │
+         │ <section>        │ Thematic grouping of content with a heading       │
+         │ <article>        │ Self-contained content (blog post, news, card)    │
+         │ <aside>          │ Side content (sidebar, related links, ads)        │
+         │ <footer>         │ Bottom section (copyright, contact, links)        │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ TEXT / INLINE SEMANTIC TAGS                                          │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ <h1> to <h6>     │ Headings (h1 = most important, h6 = least)       │
+         │ <p>              │ Paragraph of text                                 │
+         │ <blockquote>     │ Long quotation from another source                │
+         │ <q>              │ Short inline quotation (adds quotes automatically)│
+         │ <cite>           │ Title of a creative work (book, movie, article)   │
+         │ <abbr>           │ Abbreviation/acronym (title shows full form)      │
+         │ <strong>         │ Important text (bold, has semantic weight)         │
+         │ <em>             │ Emphasized text (italic, has semantic weight)      │
+         │ <mark>           │ Highlighted/marked text                           │
+         │ <small>          │ Side comments, fine print                         │
+         │ <del>            │ Deleted/removed text (strikethrough)              │
+         │ <ins>            │ Inserted/added text (underlined)                  │
+         │ <sub>            │ Subscript text (H₂O)                              │
+         │ <sup>            │ Superscript text (x²)                             │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ MEDIA / FIGURE TAGS                                                 │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ <figure>         │ Self-contained media (image, diagram, code)       │
+         │ <figcaption>     │ Caption/description for a <figure>                │
+         │ <picture>        │ Responsive images with multiple sources           │
+         │ <video>          │ Embeds video content                              │
+         │ <audio>          │ Embeds audio content                              │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ INTERACTIVE / DETAIL TAGS                                            │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ <details>        │ Expandable/collapsible content block              │
+         │ <summary>        │ Visible heading for <details> (click to toggle)   │
+         │ <dialog>         │ Popup/modal dialog box                            │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ DATA / META TAGS                                                    │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ <time>           │ Date/time value (datetime attribute for machines) │
+         │ <address>        │ Contact info for author/owner of content          │
+         │ <data>           │ Machine-readable value linked to content          │
+         │ <output>         │ Result of a calculation or user action            │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ CODE / PREFORMATTED TAGS                                            │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ <code>           │ Inline code snippet                               │
+         │ <pre>            │ Preformatted text (preserves spaces & newlines)   │
+         │ <kbd>            │ Keyboard input (Ctrl+C)                           │
+         │ <samp>           │ Sample output from a program                      │
+         │ <var>            │ Variable in a mathematical/programming context    │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ FORM SEMANTIC TAGS                                                  │
+         ├──────────────────────────────────────────────────────────────────────┤
+         │ <form>           │ Wraps form controls, defines submission behavior  │
+         │ <fieldset>       │ Groups related form fields                        │
+         │ <legend>         │ Title/caption for a <fieldset>                    │
+         │ <label>          │ Text label associated with a form control         │
+         │ <optgroup>       │ Groups options in a <select> dropdown             │
+         └──────────────────────────────────────────────────────────────────────┘
+
+      4. Semantic vs Non-Semantic:
+         - Non-semantic: <div class="header"> → browser doesn't know it's a header
+         - Semantic:     <header>            → browser & screen readers know it's a header
+
+      5. Best Practices:
+         - Use <main> only once per page.
+         - Use <section> when content has a heading/theme.
+         - Use <article> for content that makes sense on its own.
+         - Don't use semantic tags just for styling (use CSS instead).
+         - Combine semantic tags: <article> can contain <header>, <footer>, <section>.
+
+      ===== END OF NOTES =====
+    -->
+
+    <!-- <p>there is not alternative of hardwork -rajat soni</p> -->
+    <!-- <blockquote cite="https://www.rajat.com">
+      There is not alternative of hardwork
+    </blockquote>
+    <q>Rajat Soni</q> -->
+
+    <!-- <details>
+      <summary>who is vikas</summary>
+      <p>vikas is a Senior SDE and mentor</p>
+    </details>
+    <details>
+      <summary>who is vikas</summary>
+      <p>vikas is a Senior SDE and mentor</p>
+    </details>
+    <details>
+      <summary>who is vikas</summary>
+      <p>vikas is a Senior SDE and mentor</p>
+    </details> -->
+
+    <!-- <figure>
+      <img
+        src="https://images.pexels.com/photos/37330874/pexels-photo-37330874.jpeg"
+        width="300px"
+        alt="building image"
+      />
+      <figcaption>
+        this is a very tall and <mark>fantastic</mark> building
+      </figcaption>
+    </figure> -->
+    <!-- <p>my batch time is <time datetime="2026-06-14">14th June 2026</time></p> -->
+
+    <!-- <address>
+        Vikas thakur <br>
+        vikas@gmail.com <br>
+        Noida,Uttar Pradesh
+    </address> -->
+
+    <!-- <p>
+        <abbr title="geeksforgeeks">GFG</abbr>
+    </p> -->
+
+    <!-- <code> console.log("hii"); </code> -->
+    <pre>
+        function abc(){
+            console.log("hi")
+        }
+     </pre
+    >
+  </body>
+</html>

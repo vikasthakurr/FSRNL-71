@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--
+      ===== ARIA (Accessible Rich Internet Applications) - NOTES =====
+
+      ═══════════════════════════════════════════════════════════════
+      1. WHAT IS ARIA?
+      ═══════════════════════════════════════════════════════════════
+         - ARIA stands for Accessible Rich Internet Applications.
+         - It is a set of HTML attributes (roles, states, properties)
+           that make web content more accessible to people with disabilities.
+         - Defined by the W3C (World Wide Web Consortium) as part of
+           the WAI (Web Accessibility Initiative).
+         - ARIA does NOT change how elements look or behave — it only
+           changes how they are announced by assistive technologies
+           (like screen readers).
+
+      ═══════════════════════════════════════════════════════════════
+      2. HISTORY OF ARIA
+      ═══════════════════════════════════════════════════════════════
+         - Early web (1990s): Pages were simple text/links — mostly accessible.
+         - Late 1990s–2000s: JavaScript, AJAX, and dynamic UIs emerged.
+           Screen readers couldn't understand dynamic content updates.
+         - 2006: W3C WAI began developing ARIA specification.
+         - 2008: ARIA 1.0 first working draft published.
+         - 2014: WAI-ARIA 1.0 became an official W3C Recommendation.
+         - 2017: WAI-ARIA 1.1 released (added new roles like feed, term, figure).
+         - 2023: WAI-ARIA 1.2 became a W3C Recommendation.
+         - Present: ARIA 1.3 in development.
+
+         Timeline:
+         1990s → Simple HTML (accessible by default)
+         2000s → Rich JS apps break accessibility
+         2006  → W3C starts ARIA spec
+         2014  → ARIA 1.0 official
+         2017  → ARIA 1.1
+         2023  → ARIA 1.2
+         Now   → ARIA 1.3 in progress
+
+      ═══════════════════════════════════════════════════════════════
+      3. WHY IS ARIA NEEDED?
+      ═══════════════════════════════════════════════════════════════
+         - Native HTML elements (<button>, <nav>, <input>) have built-in
+           accessibility. But modern web apps use custom widgets (tabs,
+           modals, carousels, drag-and-drop) built with <div> and <span>.
+         - These custom widgets have NO semantic meaning for screen readers.
+         - ARIA bridges this gap by adding meaning to non-semantic elements.
+
+         Problems ARIA solves:
+         ┌─────────────────────────────────────────────────────────────┐
+         │ Problem                        │ ARIA Solution               │
+         ├─────────────────────────────────────────────────────────────┤
+         │ Custom button using <div>      │ role="button"               │
+         │ Dynamic content updates        │ aria-live="polite"          │
+         │ Expanded/collapsed sections    │ aria-expanded="true/false"  │
+         │ Form errors not announced      │ aria-invalid, aria-errormsg │
+         │ Unlabeled icon buttons         │ aria-label="Close"          │
+         │ Tab panels                     │ role="tablist", role="tab"  │
+         │ Progress indicators            │ role="progressbar"          │
+         │ Modal dialogs                  │ role="dialog", aria-modal   │
+         └─────────────────────────────────────────────────────────────┘
+
+      ═══════════════════════════════════════════════════════════════
+      4. ARIA CATEGORIES (Three Types of ARIA Attributes)
+      ═══════════════════════════════════════════════════════════════
+
+         A) ROLES — Define WHAT an element IS
+            - Landmark roles: banner, navigation, main, contentinfo
+            - Widget roles: button, tab, dialog, slider, progressbar
+            - Document roles: article, heading, list, listitem
+            - Example: <div role="button">Click Me</div>
+
+         B) PROPERTIES — Define characteristics (don't change often)
+            - aria-label: Provides accessible name
+            - aria-labelledby: Points to element that labels this one
+            - aria-describedby: Points to element describing this one
+            - aria-required: Indicates field is required
+            - aria-placeholder: Placeholder text for assistive tech
+            - aria-haspopup: Indicates element triggers a popup
+
+         C) STATES — Define current condition (change dynamically)
+            - aria-expanded: true/false (collapsible sections)
+            - aria-hidden: true/false (hide from screen readers)
+            - aria-disabled: true/false
+            - aria-checked: true/false/mixed (checkboxes)
+            - aria-selected: true/false (tabs, list items)
+            - aria-live: off/polite/assertive (dynamic updates)
+
+      ═══════════════════════════════════════════════════════════════
+      5. COMMON ARIA ATTRIBUTES & USAGE
+      ═══════════════════════════════════════════════════════════════
+
+         aria-label:
+           <button aria-label="Close menu">X</button>
+           → Screen reader says: "Close menu, button"
+
+         aria-labelledby:
+           <h2 id="sec1">Payment</h2>
+           <form aria-labelledby="sec1">...</form>
+           → Form is labeled by the heading "Payment"
+
+         aria-describedby:
+           <input id="pw" aria-describedby="pw-help" />
+           <p id="pw-help">Must be 8+ characters</p>
+           → Screen reader reads the help text after the input
+
+         aria-hidden:
+           <span aria-hidden="true">🔍</span>
+           → Decorative icon hidden from screen readers
+
+         aria-live:
+           <div aria-live="polite">3 new messages</div>
+           → Screen reader announces when content changes
+           - "polite": waits for user to be idle
+           - "assertive": interrupts immediately
+
+         aria-expanded:
+           <button aria-expanded="false">Show More</button>
+           → Tells user the section is currently collapsed
+
+         role:
+           <div role="alert">Error: Invalid email</div>
+           → Screen reader immediately announces the error
+
+      ═══════════════════════════════════════════════════════════════
+      6. ARIA ALTERNATIVES (Prefer Native HTML Over ARIA)
+      ═══════════════════════════════════════════════════════════════
+
+         The #1 Rule of ARIA:
+         "If you can use a native HTML element with built-in semantics,
+          DO THAT instead of adding ARIA to a <div>."
+
+         ┌─────────────────────────────────────────────────────────────┐
+         │ Instead of ARIA...            │ Use Native HTML...           │
+         ├─────────────────────────────────────────────────────────────┤
+         │ <div role="button">           │ <button>                     │
+         │ <div role="navigation">       │ <nav>                        │
+         │ <div role="main">             │ <main>                       │
+         │ <div role="heading">          │ <h1> to <h6>                 │
+         │ <span role="link">            │ <a href="">                   │
+         │ <div role="list">             │ <ul> or <ol>                 │
+         │ <div role="listitem">         │ <li>                         │
+         │ <div role="img">              │ <img alt="">                  │
+         │ <div role="textbox">          │ <input> or <textarea>        │
+         │ <div role="checkbox">         │ <input type="checkbox">      │
+         │ <div role="form">             │ <form>                       │
+         │ <div role="banner">           │ <header>                     │
+         │ <div role="contentinfo">      │ <footer>                     │
+         │ <div aria-required="true">    │ <input required>             │
+         └─────────────────────────────────────────────────────────────┘
+
+         Why prefer native HTML?
+         - Built-in keyboard support (no extra JS needed).
+         - Built-in focus management.
+         - Works without JavaScript.
+         - Less code, fewer bugs.
+         - Better browser support.
+
+      ═══════════════════════════════════════════════════════════════
+      7. FIVE RULES OF ARIA (W3C Official Rules)
+      ═══════════════════════════════════════════════════════════════
+
+         Rule 1: Don't use ARIA if native HTML works.
+         Rule 2: Don't change native semantics unless necessary.
+                 Bad:  <h2 role="tab">  (heading is no longer a heading)
+                 Good: <div role="tab"><h2>Tab Title</h2></div>
+         Rule 3: All interactive ARIA controls must be keyboard accessible.
+         Rule 4: Don't use role="presentation" or aria-hidden="true"
+                 on focusable elements.
+         Rule 5: All interactive elements must have an accessible name.
+
+      ═══════════════════════════════════════════════════════════════
+      8. ARIA LANDMARK ROLES
+      ═══════════════════════════════════════════════════════════════
+
+         Landmarks help screen reader users jump between page sections:
+         - role="banner"        → <header> (site-level)
+         - role="navigation"    → <nav>
+         - role="main"          → <main>
+         - role="complementary" → <aside>
+         - role="contentinfo"   → <footer>
+         - role="search"        → search form area
+         - role="form"          → <form> with accessible name
+         - role="region"        → <section> with accessible name
+
+      ═══════════════════════════════════════════════════════════════
+      9. TESTING ARIA / ACCESSIBILITY TOOLS
+      ═══════════════════════════════════════════════════════════════
+         - Chrome DevTools → Accessibility tab
+         - Lighthouse (built into Chrome)
+         - axe DevTools (browser extension)
+         - NVDA (free screen reader for Windows)
+         - VoiceOver (built into macOS/iOS)
+         - WAVE (web accessibility evaluation tool)
+         - HTML Validator (checks ARIA misuse)
+
+      ═══════════════════════════════════════════════════════════════
+      10. SUMMARY
+      ═══════════════════════════════════════════════════════════════
+         - ARIA = extra accessibility info for assistive technologies.
+         - Use it ONLY when native HTML is not enough.
+         - Three types: Roles, Properties, States.
+         - Always test with a screen reader.
+         - Follow the 5 rules of ARIA.
+         - Goal: Make the web usable for EVERYONE.
+
+      ===== END OF NOTES =====
+    -->
+  </body>
+</html>

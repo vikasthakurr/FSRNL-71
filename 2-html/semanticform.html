@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--
+      ===== SEMANTIC FORMS IN HTML - NOTES =====
+
+      1. What is a Semantic Form?
+         - A form that uses meaningful HTML elements to provide structure,
+           accessibility, and context to form controls.
+         - Goes beyond just <input> and <button> by using elements like
+           <fieldset>, <legend>, <label>, <optgroup>, etc.
+
+      2. Key Semantic Form Elements:
+         ┌─────────────────────────────────────────────────────────────┐
+         │ Element      │ Purpose                                      │
+         ├─────────────────────────────────────────────────────────────┤
+         │ <form>       │ Wraps the entire form, defines action/method │
+         │ <fieldset>   │ Groups related form controls together        │
+         │ <legend>     │ Provides a caption/title for a <fieldset>    │
+         │ <label>      │ Associates text with a form control (for=id) │
+         │ <select>     │ Dropdown selection list                      │
+         │ <option>     │ Individual option inside <select>            │
+         │ <optgroup>   │ Groups options within a <select>             │
+         │ <textarea>   │ Multi-line text input                        │
+         │ <output>     │ Displays result of a calculation             │
+         │ <datalist>   │ Predefined options for an <input>            │
+         └─────────────────────────────────────────────────────────────┘
+
+      3. Why Use Semantic Forms?
+         - Accessibility: Screen readers can navigate grouped fields and
+           read labels associated with inputs.
+         - Structure: Logical grouping makes complex forms easier to
+           understand for both users and developers.
+         - Usability: Clicking a <label> focuses its linked input.
+         - SEO & Maintainability: Cleaner, self-documenting code.
+
+      4. <fieldset> and <legend>:
+         - <fieldset> draws a visual border around grouped controls.
+         - <legend> is the first child of <fieldset> and acts as its title.
+         - Useful for grouping: Personal Info, Contact Info, Preferences, etc.
+         - Can be nested (fieldset inside fieldset) for sub-groups.
+
+      5. <label> Best Practices:
+         - Always use the "for" attribute matching the input's "id".
+         - Example: <label for="email">Email:</label>
+                    <input type="email" id="email" />
+         - Alternatively, wrap the input inside the label (implicit association).
+
+      6. Form Attributes:
+         - action: URL where form data is sent on submission.
+         - method: HTTP method (GET or POST).
+         - novalidate: Disables browser's built-in validation.
+         - autocomplete: on/off for browser autofill.
+
+      7. Input Attributes for Semantics & Validation:
+         - required: Field must be filled before submission.
+         - readonly: Field is visible but not editable (value is submitted).
+         - disabled: Field is not editable and value is NOT submitted.
+         - placeholder: Hint text shown when input is empty.
+         - pattern: Regex for custom validation.
+         - min, max, step: For numeric/date inputs.
+
+      8. <select> and <option>:
+         - <select> creates a dropdown list.
+         - Each <option> has a value attribute sent on form submission.
+         - Use <optgroup label="Group Name"> to group related options.
+
+      9. <textarea>:
+         - Multi-line text input for longer content.
+         - Attributes: rows, cols (size), maxlength, minlength, wrap.
+
+      10. Accessibility Tips:
+          - Always associate labels with inputs (for/id pairing).
+          - Use fieldset/legend to group related fields.
+          - Add aria-describedby for extra help text.
+          - Ensure tab order is logical (use tabindex sparingly).
+          - Provide visible error messages linked with aria-live.
+
+      ===== END OF NOTES =====
+    -->
+    <form action="">
+      <fieldset>
+        <legend>Event Registration Form</legend>
+        <fieldset>
+          <legend>Personal Info</legend>
+          <label for="Fullname">FullName:</label>
+          <input
+            type="text"
+            name="fullname"
+            id="fullname"
+            placeholder="enter your fullname"
+            required
+          />
+          <br />
+          <br />
+          <label for="Parent Name">Parent Name:</label>
+          <input
+            type="text"
+            name="parentname"
+            id="parentname"
+            placeholder="enter your parent name"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <legend>Contact Information</legend>
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value="vikas.kumar2@geeksforgeeks.org"
+            placeholder="enter yourr valid email"
+            required
+            readonly
+          />
+          <br /><br />
+          <label for="mobile">Mobile-No:</label>
+          <input
+            type="text"
+            name="mobile"
+            id="mobile"
+            placeholder="enter your 10 digit mobile no"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <legend>Preferrence</legend>
+          <label for="Meal">Meal:</label>
+          <select name="" id="">
+            <option value="">select a meal type</option>
+            <option value="veg">Veg</option>
+            <option value="veg">Veg</option>
+            <option value="veg">Veg</option>
+            <option value="veg">Veg</option>
+          </select>
+          <br /><br />
+          <label for="Meal">Resident Area:</label>
+          <select name="" id="">
+            <option value="">select a resident type</option>
+            <option value="veg">Rural</option>
+            <option value="veg">Urban</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Other Information</legend>
+          <label for="external">Other Info:</label>
+          <textarea name="info" id="info" cols="35" rows="5"></textarea>
+        </fieldset>
+        <br /><br />
+        <input type="submit" value="Submit Form" />
+      </fieldset>
+    </form>
+  </body>
+</html>
