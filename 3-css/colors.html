@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Colors</title>
+
+    <style>
+      /* ============================================
+         CSS COLORS - NOTES
+         ============================================ */
+
+      /* --- WAYS TO DEFINE COLORS IN CSS --- */
+
+      /* 1. Named Colors (Keywords)
+            - CSS has 140+ predefined color names.
+            - Examples: red, blue, green, tomato, coral,
+              rebeccapurple, transparent, currentColor
+            - Usage: color: tomato;
+      */
+
+      /* 2. Hexadecimal (#RRGGBB)
+            - 6-digit hex code representing Red, Green, Blue channels.
+            - Each channel ranges from 00 (no color) to FF (full color).
+            - Shorthand: #RGB (e.g., #f00 = #ff0000)
+            - 8-digit hex adds alpha: #RRGGBBAA
+            - Examples:
+              color: #ff0000;   -> pure red
+              color: #00ff00;   -> pure green
+              color: #0000ff;   -> pure blue
+              color: #000;      -> black (shorthand)
+              color: #fff;      -> white (shorthand)
+              color: #4E3F55;   -> custom purple
+              color: #ff000080; -> red with 50% opacity
+      */
+
+      /* 3. RGB - rgb(red, green, blue)
+            - Each value ranges from 0 to 255.
+            - Examples:
+              color: rgb(255, 0, 0);    -> red
+              color: rgb(0, 255, 0);    -> green
+              color: rgb(0, 0, 255);    -> blue
+              color: rgb(255, 255, 255);-> white
+              color: rgb(0, 0, 0);      -> black
+      */
+
+      /* 4. RGBA - rgba(red, green, blue, alpha)
+            - Same as RGB but with an alpha (opacity) channel.
+            - Alpha ranges from 0 (fully transparent) to 1 (fully opaque).
+            - Examples:
+              color: rgba(255, 0, 0, 1);     -> fully opaque red
+              color: rgba(255, 0, 0, 0.5);   -> 50% transparent red
+              color: rgba(0, 0, 0, 0.3);     -> 30% opaque black (light overlay)
+              color: rgba(145, 255, 0, 0.623);-> semi-transparent green
+      */
+
+      /* 5. HSL - hsl(hue, saturation, lightness)
+            - Hue: 0-360 (color wheel degree)
+              0/360 = red, 120 = green, 240 = blue
+            - Saturation: 0% (gray) to 100% (full color)
+            - Lightness: 0% (black) to 100% (white), 50% = normal
+            - Examples:
+              color: hsl(0, 100%, 50%);   -> red
+              color: hsl(120, 100%, 50%); -> green
+              color: hsl(240, 100%, 50%); -> blue
+              color: hsl(0, 0%, 50%);     -> gray
+      */
+
+      /* 6. HSLA - hsla(hue, saturation, lightness, alpha)
+            - Same as HSL but with alpha for opacity.
+            - Examples:
+              color: hsla(0, 100%, 50%, 0.5);  -> 50% transparent red
+              color: hsla(120, 100%, 25%, 0.8);-> dark green, 80% opaque
+      */
+
+      /* --- SPECIAL COLOR VALUES --- */
+
+      /* transparent
+            - Fully transparent (invisible).
+            - Usage: background-color: transparent;
+      */
+
+      /* currentColor
+            - Refers to the current value of the element's "color" property.
+            - Useful for borders, shadows, etc.
+            - Example:
+              color: red;
+              border: 2px solid currentColor; -> border will be red
+      */
+
+      /* inherit
+            - Takes the color value from the parent element.
+            - Example: color: inherit;
+      */
+
+      /* --- WHERE CAN YOU USE COLORS? --- */
+
+      /* color             -> text color
+         background-color  -> element background
+         border-color      -> border color
+         outline-color     -> outline color
+         box-shadow        -> shadow color
+         text-shadow       -> text shadow color
+         text-decoration-color -> underline/overline color
+      */
+
+      /* --- HEX vs RGB vs HSL (When to use?) ---
+            - Hex: Most common, compact, widely used in design tools.
+            - RGB/RGBA: When you need alpha transparency.
+            - HSL/HSLA: When you want to easily adjust shades/tints.
+              (Changing lightness gives light/dark variants easily)
+      */
+
+      /* --- OPACITY PROPERTY ---
+            - Separate from color alpha.
+            - Affects the ENTIRE element (including children).
+            - Ranges from 0 (invisible) to 1 (fully visible).
+            - Example: opacity: 0.5; -> entire element 50% transparent
+            - Difference from rgba:
+              rgba alpha -> only affects that specific color.
+              opacity    -> affects element + all its children.
+      */
+
+      /* ============================================ */
+
+      /* Demo styles */
+      .named {
+        color: tomato;
+      }
+      .hex {
+        color: #4e3f55;
+      }
+      .rgb {
+        color: rgb(0, 128, 255);
+      }
+      .rgba {
+        color: rgba(255, 0, 0, 0.6);
+      }
+      .hsl {
+        color: hsl(280, 70%, 50%);
+      }
+      .hsla {
+        color: hsla(120, 100%, 30%, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS Colors Demo</h1>
+    <p class="named">Named Color - tomato</p>
+    <p class="hex">Hex Color - #4E3F55</p>
+    <p class="rgb">RGB Color - rgb(0, 128, 255)</p>
+    <p class="rgba">RGBA Color - rgba(255, 0, 0, 0.6)</p>
+    <p class="hsl">HSL Color - hsl(280, 70%, 50%)</p>
+    <p class="hsla">HSLA Color - hsla(120, 100%, 30%, 0.7)</p>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      /* ============================================
+         CSS SELECTORS & COMBINATORS - NOTES
+         ============================================ */
+
+      /* --- SELECTORS --- */
+
+      /* 1. Universal Selector (*)
+            - Selects ALL elements on the page.
+            - Example: * { margin: 0; padding: 0; }
+      */
+
+      /* 2. Element (Type) Selector
+            - Selects all elements of a specific HTML tag.
+            - Example: h1 { color: red; }
+      */
+
+      /* 3. ID Selector (#)
+            - Selects a single unique element by its id attribute.
+            - IDs should be unique per page.
+            - Specificity: 1-0-0 (high)
+            - Example: #one { color: red; }
+      */
+
+      /* 4. Class Selector (.)
+            - Selects all elements with a given class.
+            - Reusable across multiple elements.
+            - Specificity: 0-1-0 (medium)
+            - Example: .red { color: red; }
+      */
+
+      /* 5. Grouping Selector (,)
+            - Applies same styles to multiple selectors.
+            - Example: h3, h4 { color: red; }
+      */
+
+      /* 6. Attribute Selector ([])
+            - Selects elements based on attributes or attribute values.
+            - [attr]       -> has the attribute
+            - [attr="val"] -> attribute equals value
+            - [attr^="val"]-> attribute starts with value
+            - [attr$="val"]-> attribute ends with value
+            - [attr*="val"]-> attribute contains value
+            - Example: input[type="text"] { color: red; }
+      */
+
+      /* 7. Pseudo-class Selectors (:)
+            - Target elements based on state or position.
+            - :hover       -> mouse over the element
+            - :focus       -> element has keyboard focus
+            - :active      -> element is being clicked
+            - :first-child -> first child of parent
+            - :last-child  -> last child of parent
+            - :nth-child(n)-> nth child of parent
+            - :not(sel)    -> elements NOT matching selector
+            - :visited     -> links already visited
+            - Example: #btn:hover { background-color: green; }
+      */
+
+      /* 8. Pseudo-element Selectors (::)
+            - Target a specific part of an element (not a real DOM node).
+            - ::before      -> inserts content before the element
+            - ::after       -> inserts content after the element
+            - ::placeholder -> styles placeholder text in inputs
+            - ::first-line  -> first line of a block element
+            - ::first-letter-> first letter of a block element
+            - ::selection   -> text highlighted by user
+            - Example: h1::after { content: " Kumar Thakur"; }
+      */
+
+      /* --- COMBINATORS --- */
+      /* Combinators define the RELATIONSHIP between selectors.
+         They target elements based on position relative to others in DOM. */
+
+      /* 1. Descendant Combinator (space)
+            - Selects all descendants (any depth) of a parent.
+            - Example: div p { color: red; }
+            - <div><section><p>targeted</p></section></div>
+      */
+
+      /* 2. Child Combinator (>)
+            - Selects only DIRECT children (one level deep).
+            - Example: div > p { color: blue; }
+            - <div><p>targeted</p><section><p>NOT targeted</p></section></div>
+      */
+
+      /* 3. Adjacent Sibling Combinator (+)
+            - Selects the element IMMEDIATELY after the first element.
+            - Example: h1 + p { color: green; }
+            - <h1>Heading</h1><p>targeted</p><p>NOT targeted</p>
+      */
+
+      /* 4. General Sibling Combinator (~)
+            - Selects ALL siblings that come after the first element.
+            - Example: h1 ~ p { color: orange; }
+            - <h1>Heading</h1><p>targeted</p><span>skip</span><p>also targeted</p>
+      */
+
+      /* ============================================ */
+      /* * {
+        color: yellow;
+        font-size: 30px;
+        font-style: italic;
+      } */
+      /* h1 {
+        color: red;
+      } */
+      /* #one {
+        color: red;
+      }
+      #two {
+        color: green;
+      } */
+      /* h3,
+      h4 {
+        color: red;
+      } */
+      /* .red {
+        color: red;
+      } */
+      /* p:nth-child() {
+        color: blue;
+      }
+      input[type="text"] {
+        color: red;
+        font-size: 24px;
+      }
+      input::placeholder{
+        color: blue;
+      } */
+      /* #btn {
+        padding: 20px 30px;
+        background-color: red;
+      }
+      #btn:hover {
+        padding: 50px 70px;
+        background-color: green;
+      } */
+      h1::before {
+        content: " ";
+      }
+      h1::after {
+        content: " Kumar Thakur";
+      }
+      h1 {
+        /* color: rgba(145, 255, 0, 0.623); */
+        color: #4e3f55;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Vikas</h1>
+    <!-- <h1 id="one">hello vikas</h1>
+    <h1 id="two">vikas</h1> -->
+
+    <!-- <h3 class="red">vikas</h3>
+    <h3 class="red">vikas 2</h3>
+    <h4 class="red">vikas 3</h4> -->
+    <!-- <input type="text" name="" id="" placeholder="enter name" /> -->
+    <!-- <p>item-1</p>
+    <p>item-2</p>
+    <p>item-3</p>
+    <p>item-4</p> -->
+
+    <!-- <button id="btn">submit</button> -->
+  </body>
+</html>
