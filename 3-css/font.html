@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Fonts</title>
+    <!--
+      ===================== CSS FONT NOTES =====================
+
+      CSS provides properties to control the appearance of text,
+      including typeface, size, weight, spacing, and style.
+
+      --------- Font Properties ---------
+
+      font-family
+        - Specifies the typeface for text.
+        - Provide a fallback stack (comma-separated, last one is generic).
+        - Generic families: serif, sans-serif, monospace, cursive, fantasy, system-ui
+        - Quotes required for names with spaces.
+        - Example: font-family: "Lucida Sans", Geneva, Verdana, sans-serif;
+
+      font-size
+        - Sets the size of text.
+        - Values: px, em, rem, %, vw, keywords (small, medium, large)
+        - Example: font-size: 50px;
+
+      font-weight
+        - Controls thickness/boldness of text.
+        - Values: normal (400), bold (700), bolder, lighter, 100-900
+        - Example: font-weight: bolder;
+
+      font-style
+        - Sets the style of text.
+        - Values: normal | italic | oblique
+        - Example: font-style: italic;
+
+      font-variant
+        - Controls small-caps and other variants.
+        - Values: normal | small-caps
+        - Example: font-variant: small-caps;
+
+      --------- Text Spacing Properties ---------
+
+      letter-spacing
+        - Space between individual characters.
+        - Example: letter-spacing: 20px;
+
+      word-spacing
+        - Space between words.
+        - Example: word-spacing: 5px;
+
+      line-height
+        - Vertical space between lines of text.
+        - Values: number (multiplier), px, em, rem, %
+        - Example: line-height: 50px;  or  line-height: 1.5;
+
+      text-indent
+        - Indents the first line of a block.
+        - Example: text-indent: 40px;
+
+      --------- Text Decoration & Transform ---------
+
+      text-decoration
+        - Adds lines to text.
+        - Values: none | underline | overline | line-through
+        - Shorthand: text-decoration: underline red wavy;
+
+      text-transform
+        - Changes capitalization.
+        - Values: none | uppercase | lowercase | capitalize
+
+      text-align
+        - Horizontal alignment of text.
+        - Values: left | right | center | justify
+
+      --------- Font Shorthand ---------
+      font: style variant weight size/line-height family;
+      Example:
+        font: italic small-caps bold 16px/1.5 "Arial", sans-serif;
+      (style, variant, weight are optional; size and family are required)
+
+      --------- Using External Fonts ---------
+
+      Method 1: @import (in CSS)
+        @import url("https://fonts.googleapis.com/css2?family=FontName&display=swap");
+
+      Method 2: <link> (in HTML <head>)
+        <link href="https://fonts.googleapis.com/css2?family=FontName" rel="stylesheet">
+
+      Method 3: @font-face (self-hosted)
+        @font-face {
+          font-family: "MyFont";
+          src: url("fonts/myfont.woff2") format("woff2"),
+               url("fonts/myfont.woff") format("woff");
+          font-weight: normal;
+          font-style: normal;
+        }
+
+      --------- Tips ---------
+      - Always include a generic fallback family at the end of font-family stack.
+      - Use rem for font-size for responsive, accessible designs.
+      - line-height without units (e.g., 1.5) is preferred — it scales with font-size.
+      - @import blocks rendering; <link> is generally preferred for performance.
+      - Google Fonts (fonts.google.com) is a popular free font resource.
+      - Use font-display: swap to avoid invisible text while font loads.
+
+      ===================== END NOTES =====================
+    -->
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap");
+      h1 {
+        color: red;
+        font-size: 50px;
+        /* font-family: "Bitcount Grid Double", system-ui; */
+        font-family:
+          "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-style: italic;
+        font-weight: bolder;
+        word-spacing: 5px;
+        letter-spacing: 20px;
+        line-height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My name is vikas</h1>
+  </body>
+</html>

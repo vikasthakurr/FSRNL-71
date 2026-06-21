@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Animation</title>
+    <!--
+      ===================== CSS ANIMATION NOTES =====================
+
+      CSS Animations allow elements to transition between styles over time
+      without using JavaScript.
+
+      Two main components:
+      1. @keyframes  - Defines the animation steps (what styles change and when)
+      2. animation properties - Applied to the element to control the animation
+
+      --------- @keyframes Syntax ---------
+      @keyframes animationName {
+        from { ... }    /* same as 0% */
+        to { ... }      /* same as 100% */
+      }
+
+      Or with percentage steps:
+      @keyframes animationName {
+        0%   { transform: translateY(0); }
+        50%  { transform: translateY(-200px); }
+        100% { transform: translateY(0); }
+      }
+
+      --------- Animation Properties ---------
+      animation-name            : Name of the @keyframes to use
+      animation-duration        : How long one cycle takes (e.g., 2s, 500ms)
+      animation-delay           : Wait time before animation starts (e.g., 1s)
+      animation-iteration-count : How many times to repeat (number | infinite)
+      animation-direction       : normal | reverse | alternate | alternate-reverse
+      animation-timing-function : ease | linear | ease-in | ease-out | ease-in-out | cubic-bezier()
+      animation-fill-mode       : none | forwards | backwards | both
+      animation-play-state      : running | paused
+
+      --------- Shorthand ---------
+      animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+      Example:
+        animation: jump 2s ease-in-out 0s infinite normal none running;
+
+      --------- Key Concepts ---------
+      - Use "transform" and "opacity" for smooth, GPU-accelerated animations.
+      - Avoid animating layout properties (width, height, top, left) for performance.
+      - "animation-fill-mode: forwards" keeps the element at the final keyframe state after completion.
+      - "animation-direction: alternate" makes the animation reverse on every other cycle.
+      - Multiple animations can be comma-separated:
+          animation: fadeIn 1s, slideUp 0.5s;
+
+      ===================== END NOTES =====================
+    -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .ground {
+        width: 600px;
+        height: 700px;
+        background-color: green;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+      }
+      .ball {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation-name: jump;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+      }
+      @keyframes jump {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-200px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ground">
+      <div class="ball">IND VS AFG</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Box Model</title>
+    <!--
+      ===================== CSS BOX MODEL NOTES =====================
+
+      Every HTML element is treated as a rectangular box. The Box Model
+      describes the space an element takes up, made of 4 layers:
+
+      ┌──────────────────────────────────────┐
+      │              MARGIN                   │  ← Space outside the border (transparent)
+      │  ┌────────────────────────────────┐   │
+      │  │           BORDER               │   │  ← Visible edge around padding
+      │  │  ┌──────────────────────────┐  │   │
+      │  │  │        PADDING           │  │   │  ← Space between content and border
+      │  │  │  ┌────────────────────┐  │  │   │
+      │  │  │  │     CONTENT        │  │  │   │  ← Actual content (text, images, etc.)
+      │  │  │  └────────────────────┘  │  │   │
+      │  │  └──────────────────────────┘  │   │
+      │  └────────────────────────────────┘   │
+      └──────────────────────────────────────┘
+
+      --------- The 4 Layers ---------
+      1. Content  : The actual content area (width & height)
+      2. Padding  : Space between content and border (padding)
+      3. Border   : The border around the padding (border)
+      4. Margin   : Space outside the border, separates elements (margin)
+
+      --------- box-sizing Property ---------
+
+      content-box (default):
+        - width/height apply ONLY to the content area.
+        - Total width = width + padding-left + padding-right + border-left + border-right
+        - Total height = height + padding-top + padding-bottom + border-top + border-bottom
+        - Example: width: 600px + padding: 200px (both sides) + border: 100px (both sides)
+                   = 600 + 400 + 200 = 1200px total width
+
+      border-box:
+        - width/height INCLUDE content + padding + border.
+        - Total width = width (padding and border are inside)
+        - Much easier to work with for layout.
+        - Example: width: 600px includes everything, content shrinks to fit.
+
+      --------- Common Reset ---------
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;   /* Makes sizing predictable */
+      }
+
+      --------- Margin Collapse ---------
+      - Vertical margins of adjacent block elements collapse (only the larger one applies).
+      - Horizontal margins NEVER collapse.
+      - Padding does NOT collapse.
+
+      --------- Shorthand ---------
+      margin: top right bottom left;       (clockwise)
+      margin: 10px 20px;                   (top/bottom  left/right)
+      margin: 10px;                        (all sides)
+      Same pattern for padding and border-width.
+
+      --------- Tips ---------
+      - Use "border-box" universally for predictable layouts.
+      - Use margin for spacing between elements.
+      - Use padding for spacing inside elements.
+      - Margin can be negative; padding cannot.
+      - Inline elements ignore top/bottom margin and padding (use display: inline-block).
+
+      ===================== END NOTES =====================
+    -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 600px;
+        height: 600px;
+        background-color: red;
+        padding: 200px;
+        border: 100px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="child"></div>
+    </div>
+  </body>
+</html>

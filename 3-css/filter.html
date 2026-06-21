@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Filter</title>
+    <!--
+      ===================== CSS FILTER NOTES =====================
+
+      The "filter" property applies graphical effects (like blur, brightness,
+      contrast) to an element. Commonly used on images but works on any element.
+
+      --------- Syntax ---------
+      filter: function(value);
+      filter: function1(value) function2(value);   /* multiple filters */
+      filter: none;                                 /* remove all filters */
+
+      --------- Available Filter Functions ---------
+
+      blur(px)
+        - Applies a Gaussian blur.
+        - Value: length in px (0 = no blur).
+        - Example: filter: blur(5px);
+
+      brightness(%)
+        - Adjusts brightness.
+        - 0% = completely black, 100% = original, >100% = brighter.
+        - Example: filter: brightness(150%);  or  brightness(1.5);
+
+      contrast(%)
+        - Adjusts contrast.
+        - 0% = completely gray, 100% = original, >100% = more contrast.
+        - Example: filter: contrast(200%);
+
+      grayscale(%)
+        - Converts to grayscale.
+        - 0% = original, 100% = fully grayscale.
+        - Example: filter: grayscale(100%);
+
+      hue-rotate(deg)
+        - Rotates the hue of colors on the color wheel.
+        - Value: angle in deg (0deg = original, 360deg = full rotation).
+        - Example: filter: hue-rotate(90deg);
+
+      invert(%)
+        - Inverts colors (like a photo negative).
+        - 0% = original, 100% = fully inverted.
+        - Example: filter: invert(100%);
+
+      opacity(%)
+        - Adjusts transparency (similar to the opacity property).
+        - 0% = fully transparent, 100% = fully opaque.
+        - Example: filter: opacity(50%);
+
+      saturate(%)
+        - Adjusts color saturation.
+        - 0% = desaturated, 100% = original, >100% = super-saturated.
+        - Example: filter: saturate(300%);
+
+      sepia(%)
+        - Applies a sepia (warm brownish) tone.
+        - 0% = original, 100% = fully sepia.
+        - Example: filter: sepia(100%);
+
+      drop-shadow(x y blur color)
+        - Adds a shadow that follows the shape of the element (respects transparency).
+        - Unlike box-shadow, it works on irregular shapes (e.g., PNG with transparency).
+        - Example: filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.5));
+
+      --------- Combining Multiple Filters ---------
+      filter: grayscale(50%) blur(2px) brightness(120%);
+      (Applied in order, left to right)
+
+      --------- backdrop-filter ---------
+      - Applies filter effects to the area BEHIND an element (not the element itself).
+      - Great for frosted glass effects.
+      - Example:
+          backdrop-filter: blur(10px);
+          background: rgba(255, 255, 255, 0.3);
+
+      --------- Tips ---------
+      - Filters can be animated/transitioned for smooth hover effects.
+      - Values can use % or decimal (e.g., brightness(50%) = brightness(0.5)).
+      - drop-shadow is better than box-shadow for non-rectangular elements.
+      - Heavy blur values can impact rendering performance.
+      - Use "will-change: filter" for better animation performance.
+
+      ===================== END NOTES =====================
+    -->
+    <style>
+      img {
+        filter: brightness(0);
+        filter: blur(55px);
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      src="https://images.pexels.com/photos/38088673/pexels-photo-38088673.jpeg"
+      alt=""
+      width="400px"
+    />
+  </body>
+</html>

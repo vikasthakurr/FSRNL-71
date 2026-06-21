@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Units</title>
+    <!--
+      ===================== CSS UNITS NOTES =====================
+
+      CSS units define the size of elements, fonts, spacing, etc.
+      They are divided into two categories: Absolute and Relative.
+
+      ========== ABSOLUTE UNITS ==========
+      Fixed size — do not change based on screen or parent.
+
+      px   - Pixels (most common). 1px = 1 dot on screen.
+      pt   - Points (1pt = 1/72 of an inch). Used in print.
+      cm   - Centimeters
+      mm   - Millimeters
+      in   - Inches (1in = 96px)
+
+      Use px for precise control. Avoid cm/mm/in for screens.
+
+      ========== RELATIVE UNITS ==========
+      Size depends on another reference value (parent, root, viewport).
+
+      --------- Font-relative Units ---------
+
+      em
+        - Relative to the font-size of the PARENT element.
+        - If parent font-size is 59px → 1em = 59px inside that parent.
+        - Compounds (nesting multiplies): parent 2em + child 2em = 4x root.
+        - Example: font-size: 2em;  (2× parent's font-size)
+
+      rem (root em)
+        - Relative to the font-size of the ROOT element (<html>).
+        - Does NOT compound — always refers to root.
+        - If html { font-size: 32px } → 1rem = 32px everywhere.
+        - Example: font-size: 1rem;  (always 32px in this file)
+        - Preferred for consistent, predictable sizing.
+
+      ch
+        - Width of the "0" character in the current font.
+        - Useful for setting max-width on text containers.
+        - Example: max-width: 60ch; (roughly 60 characters wide)
+
+      ex
+        - Height of the "x" character in the current font.
+        - Rarely used.
+
+      --------- Viewport Units ---------
+
+      vw (viewport width)
+        - 1vw = 1% of the viewport (browser window) width.
+        - 100vw = full viewport width.
+        - Example: width: 100vw;
+
+      vh (viewport height)
+        - 1vh = 1% of the viewport height.
+        - 100vh = full viewport height.
+        - Example: height: 100vh;
+
+      vmin
+        - 1vmin = 1% of the SMALLER dimension (width or height).
+        - Useful for responsive elements that fit in any orientation.
+
+      vmax
+        - 1vmax = 1% of the LARGER dimension (width or height).
+
+      dvh / svh / lvh (newer)
+        - Dynamic/Small/Large viewport height.
+        - Accounts for mobile browser UI bars that appear/disappear.
+        - dvh adjusts dynamically, svh = smallest possible, lvh = largest possible.
+
+      --------- Percentage (%) ---------
+
+      %
+        - Relative to the PARENT element's corresponding property.
+        - width: 50% → half of parent's width.
+        - font-size: 150% → 1.5× parent's font-size.
+        - Example: width: 50%; height: 50%;
+
+      ========== em vs rem ==========
+
+      em:
+        - Based on parent's font-size.
+        - Can compound (nested elements multiply).
+        - Good for component-scoped spacing (margin, padding).
+
+      rem:
+        - Based on root (<html>) font-size.
+        - Consistent everywhere, no compounding.
+        - Best for font-sizes and global spacing.
+
+      ========== When to Use What ==========
+
+      | Unit | Best For                                   |
+      |------|--------------------------------------------|
+      | px   | Borders, shadows, precise small values     |
+      | rem  | Font-size, consistent spacing              |
+      | em   | Component-relative padding/margin          |
+      | %    | Fluid widths relative to parent            |
+      | vw/vh| Full-screen layouts, hero sections         |
+      | ch   | Text container widths                      |
+
+      ========== Tips ==========
+      - Set html { font-size: 16px } (browser default) as a base for rem.
+      - Common trick: html { font-size: 62.5% } makes 1rem = 10px for easy math.
+      - Avoid px for font-size to support user accessibility zoom.
+      - 100vw can cause horizontal scrollbar (includes scrollbar width) — use width: 100% instead.
+      - Use calc() to combine units: width: calc(100vw - 20px);
+
+      ===================== END NOTES =====================
+    -->
+    <style>
+      html {
+        font-size: 32px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 100vw;
+        height: 100vh;
+        background-color: red;
+        /* font-size: 59px; */
+      }
+      .container span {
+        font-size: 1rem;
+      }
+      .child {
+        width: 50%;
+        height: 50%;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span>this is the demo content</span>
+      <!-- <div class="child"></div> -->
+    </div>
+  </body>
+</html>
