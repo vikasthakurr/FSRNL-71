@@ -4,6 +4,161 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <!--
+      ========================================
+      CSS GRID NOTES
+      ========================================
+
+      CSS Grid is a two-dimensional layout system that handles
+      both rows AND columns simultaneously.
+
+      ========================================
+      CONTAINER PROPERTIES (Parent)
+      ========================================
+
+      1. display: grid;
+         - Activates grid layout on the container.
+         - Direct children become grid items.
+
+      2. grid-template-columns:
+         - Defines the number and size of columns.
+         - Examples:
+           - grid-template-columns: 200px 200px 200px; (3 fixed columns)
+           - grid-template-columns: 1fr 1fr 1fr; (3 equal columns)
+           - grid-template-columns: repeat(3, 1fr); (shorthand for above)
+           - grid-template-columns: 1fr 2fr 1fr; (middle column is double)
+           - grid-template-columns: auto 1fr auto; (auto sizes to content)
+
+      3. grid-template-rows:
+         - Defines the number and size of rows.
+         - Works the same as grid-template-columns but for rows.
+         - Example: grid-template-rows: 100px auto 1fr;
+
+      4. gap / row-gap / column-gap:
+         - Adds spacing between grid cells.
+         - gap: 10px; (both row and column gap)
+         - row-gap: 10px; (only between rows)
+         - column-gap: 10px; (only between columns)
+         - gap: 10px 20px; (row-gap column-gap)
+
+      5. grid-template-areas:
+         - Names areas of the grid for easy placement.
+         - Each string represents a row.
+         - Example:
+           grid-template-areas:
+             "header header header"
+             "sidebar content content"
+             "footer footer footer";
+         - Use a dot (.) for empty cells: "sidebar . content"
+
+      6. justify-items: (horizontal alignment of items WITHIN their cells)
+         - start, end, center, stretch (default)
+
+      7. align-items: (vertical alignment of items WITHIN their cells)
+         - start, end, center, stretch (default)
+
+      8. place-items: <align-items> <justify-items>;
+         - Shorthand for align-items and justify-items.
+         - Example: place-items: center center;
+
+      9. justify-content: (horizontal alignment of the ENTIRE grid within container)
+         - start, end, center, space-between, space-around, space-evenly
+
+      10. align-content: (vertical alignment of the ENTIRE grid within container)
+          - start, end, center, space-between, space-around, space-evenly
+
+      11. place-content: <align-content> <justify-content>;
+          - Shorthand for align-content and justify-content.
+
+      12. grid-auto-rows / grid-auto-columns:
+          - Sets size for implicitly created rows/columns.
+          - Example: grid-auto-rows: 100px;
+
+      13. grid-auto-flow:
+          - Controls how auto-placed items fill the grid.
+          - row (default) → fills row by row
+          - column → fills column by column
+          - dense → fills gaps in the grid
+
+      ========================================
+      ITEM PROPERTIES (Children)
+      ========================================
+
+      1. grid-column-start / grid-column-end:
+         - Defines where an item starts and ends on the column axis.
+         - Example: grid-column-start: 1; grid-column-end: 3; (spans 2 columns)
+
+      2. grid-column: <start> / <end>;
+         - Shorthand for grid-column-start and grid-column-end.
+         - Example: grid-column: 1 / 3;
+         - Span syntax: grid-column: span 2; (spans 2 columns from current position)
+
+      3. grid-row-start / grid-row-end:
+         - Defines where an item starts and ends on the row axis.
+         - Example: grid-row-start: 1; grid-row-end: 3; (spans 2 rows)
+
+      4. grid-row: <start> / <end>;
+         - Shorthand for grid-row-start and grid-row-end.
+         - Example: grid-row: 1 / 3;
+         - Span syntax: grid-row: span 2;
+
+      5. grid-area:
+         - Assigns an item to a named area (from grid-template-areas).
+         - Example: grid-area: header;
+         - OR shorthand: grid-area: row-start / col-start / row-end / col-end;
+
+      6. justify-self:
+         - Overrides justify-items for a single item.
+         - Values: start, end, center, stretch
+
+      7. align-self:
+         - Overrides align-items for a single item.
+         - Values: start, end, center, stretch
+
+      8. place-self: <align-self> <justify-self>;
+         - Shorthand for align-self and justify-self.
+
+      ========================================
+      USEFUL FUNCTIONS
+      ========================================
+
+      1. repeat(count, size):
+         - repeat(3, 1fr) → 1fr 1fr 1fr
+         - repeat(auto-fill, minmax(200px, 1fr)) → responsive columns
+
+      2. minmax(min, max):
+         - Sets a size range for tracks.
+         - Example: minmax(100px, 1fr) → at least 100px, at most 1fr
+
+      3. auto-fill vs auto-fit:
+         - auto-fill: creates as many tracks as possible, even if empty
+         - auto-fit: collapses empty tracks, items stretch to fill space
+         - Example: repeat(auto-fit, minmax(200px, 1fr)) → responsive grid
+
+      4. fr unit:
+         - Fractional unit — represents a fraction of available space.
+         - 1fr 2fr → second column gets double the space of first.
+
+      ========================================
+      KEY CONCEPTS
+      ========================================
+
+      - Grid Lines: Numbered lines between tracks (start from 1)
+      - Grid Tracks: Rows or columns between two grid lines
+      - Grid Cells: Intersection of a row and column (single unit)
+      - Grid Areas: Rectangular space covering one or more cells
+      - Explicit Grid: Defined by grid-template-columns/rows
+      - Implicit Grid: Auto-created tracks for extra items
+
+      - Grid vs Flexbox:
+        - Grid = 2D (rows + columns at the same time)
+        - Flexbox = 1D (either row OR column)
+        - Use Grid for page layouts, Flexbox for component-level alignment
+
+      ========================================
+    -->
+
     <style>
       * {
         margin: 0;

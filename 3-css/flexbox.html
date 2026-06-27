@@ -4,6 +4,109 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <!--
+      ========================================
+      CSS FLEXBOX NOTES
+      ========================================
+
+      Flexbox (Flexible Box Layout) is a one-dimensional layout model
+      that distributes space among items in a container and aligns them.
+
+      ========================================
+      CONTAINER PROPERTIES (Parent)
+      ========================================
+
+      1. display: flex;
+         - Activates flexbox on the container.
+         - Direct children become flex items.
+
+      2. flex-direction:
+         - row (default) → items flow left to right
+         - row-reverse → items flow right to left
+         - column → items flow top to bottom
+         - column-reverse → items flow bottom to top
+
+      3. flex-wrap:
+         - nowrap (default) → all items stay on one line
+         - wrap → items wrap onto multiple lines (top to bottom)
+         - wrap-reverse → items wrap onto multiple lines (bottom to top)
+
+      4. flex-flow: <flex-direction> <flex-wrap>;
+         - Shorthand for flex-direction and flex-wrap.
+         - Example: flex-flow: row wrap;
+
+      5. justify-content: (alignment along MAIN axis)
+         - flex-start (default) → items packed to the start
+         - flex-end → items packed to the end
+         - center → items centered
+         - space-between → equal space between items, no space at edges
+         - space-around → equal space around each item
+         - space-evenly → equal space between and at edges
+
+      6. align-items: (alignment along CROSS axis)
+         - stretch (default) → items stretch to fill container
+         - flex-start → items aligned to the top/start
+         - flex-end → items aligned to the bottom/end
+         - center → items centered vertically
+         - baseline → items aligned by their text baseline
+
+      7. align-content: (alignment of MULTIPLE lines on cross axis)
+         - Only works when flex-wrap is enabled and there are multiple lines.
+         - Values: flex-start, flex-end, center, space-between, space-around, stretch
+
+      8. gap / row-gap / column-gap:
+         - Adds spacing between flex items without using margins.
+         - Example: gap: 10px;
+
+      ========================================
+      ITEM PROPERTIES (Children)
+      ========================================
+
+      1. order:
+         - Controls the order of items. Default is 0.
+         - Lower values appear first. Can be negative.
+
+      2. flex-grow:
+         - Defines how much an item should grow relative to others.
+         - Default: 0 (don't grow). A value of 1 means take available space.
+         - If one item has flex-grow: 2 and others have 1, it takes double the extra space.
+
+      3. flex-shrink:
+         - Defines how much an item should shrink when space is limited.
+         - Default: 1. A value of 0 means don't shrink.
+         - Higher values shrink more.
+
+      4. flex-basis:
+         - Sets the initial size of an item before growing/shrinking.
+         - Can be a length (200px, 50%) or "auto" (uses width/height).
+         - Overrides width in flex-direction: row, or height in column.
+
+      5. flex: <grow> <shrink> <basis>;
+         - Shorthand for flex-grow, flex-shrink, and flex-basis.
+         - Common values:
+           - flex: 1; → flex: 1 1 0% (grow equally, shrink equally)
+           - flex: auto; → flex: 1 1 auto
+           - flex: none; → flex: 0 0 auto (no grow, no shrink)
+
+      6. align-self:
+         - Overrides align-items for a single item.
+         - Values: auto, flex-start, flex-end, center, baseline, stretch
+
+      ========================================
+      KEY CONCEPTS
+      ========================================
+
+      - Main Axis: Defined by flex-direction (row = horizontal, column = vertical)
+      - Cross Axis: Perpendicular to main axis
+      - justify-content works on MAIN axis
+      - align-items works on CROSS axis
+      - Centering trick: justify-content: center + align-items: center
+        (centers items both horizontally and vertically)
+
+      ========================================
+    -->
+
     <style>
       * {
         margin: 0;
