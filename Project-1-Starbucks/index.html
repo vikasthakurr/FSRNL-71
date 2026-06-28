@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starbucks India Clone</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <style>
+      :root {
+        --sb-green: #00704a;
+        --sb-dark-green: #1e3932;
+        --sb-black: #000000;
+        --sb-white: #ffffff;
+        --sb-cream: #f2f0eb;
+        --sb-light-gray: #f7f7f7;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "SoDo Sans", Helvetica, Arial, sans-serif;
+      }
+
+      /* === TOP BAR === */
+      .top-bar {
+        background-color: var(--sb-dark-green);
+        color: #fff;
+        font-size: 13px;
+        padding: 8px 0;
+        text-align: center;
+      }
+      .top-bar a {
+        color: #fff;
+        text-decoration: underline;
+        font-weight: 600;
+      }
+
+      /* === NAVBAR === */
+      .navbar {
+        background: #fff;
+        padding: 12px 0;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      }
+      .navbar-brand img {
+        height: 45px;
+      }
+      .navbar .nav-link {
+        color: var(--sb-black) !important;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 8px 18px !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .navbar .nav-link:hover {
+        color: var(--sb-green) !important;
+      }
+      .btn-nav-signin {
+        border: 1px solid var(--sb-black);
+        border-radius: 25px;
+        padding: 8px 20px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--sb-black);
+      }
+      .btn-nav-signin:hover {
+        background: var(--sb-black);
+        color: #fff;
+      }
+      .btn-nav-join {
+        background: var(--sb-green);
+        color: #fff;
+        border-radius: 25px;
+        padding: 8px 20px;
+        font-size: 13px;
+        font-weight: 700;
+        border: none;
+      }
+      .btn-nav-join:hover {
+        background: #005c3e;
+        color: #fff;
+      }
+
+      /* === HERO CAROUSEL === */
+      .hero-carousel .carousel-item {
+        height: 500px;
+        background-size: cover;
+        background-position: center;
+      }
+      .hero-carousel .carousel-caption {
+        bottom: 50%;
+        transform: translateY(50%);
+        text-align: left;
+        left: 8%;
+        right: auto;
+        max-width: 450px;
+      }
+      .hero-carousel .carousel-caption h2 {
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.2;
+      }
+      .hero-carousel .carousel-caption p {
+        font-size: 1.1rem;
+        color: #fff;
+        margin: 15px 0;
+      }
+      .btn-hero {
+        background: #fff;
+        color: var(--sb-dark-green);
+        border-radius: 25px;
+        padding: 12px 28px;
+        font-weight: 700;
+        font-size: 14px;
+        border: none;
+      }
+      .btn-hero:hover {
+        background: #f0f0f0;
+        color: var(--sb-dark-green);
+      }
+
+      /* === CATEGORY SECTION === */
+      .category-section {
+        padding: 50px 0;
+        background: var(--sb-light-gray);
+      }
+      .category-card {
+        text-align: center;
+        transition: transform 0.3s;
+        cursor: pointer;
+      }
+      .category-card:hover {
+        transform: translateY(-5px);
+      }
+      .category-card img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--sb-green);
+        padding: 3px;
+      }
+      .category-card h6 {
+        margin-top: 12px;
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      /* === PROMO GRID === */
+      .promo-section {
+        padding: 50px 0;
+      }
+      .promo-card {
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        height: 350px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: flex-end;
+      }
+      .promo-card .promo-overlay {
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        width: 100%;
+        padding: 30px 20px 20px;
+        color: #fff;
+      }
+      .promo-card h4 {
+        font-weight: 700;
+        font-size: 1.3rem;
+      }
+      .promo-card p {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      .btn-promo {
+        background: #fff;
+        color: var(--sb-dark-green);
+        border-radius: 20px;
+        padding: 8px 20px;
+        font-weight: 600;
+        font-size: 13px;
+        border: none;
+      }
+
+      /* === FEATURED PRODUCTS === */
+      .featured-section {
+        padding: 50px 0;
+        background: #fff;
+      }
+      .product-card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      }
+      .product-card img {
+        height: 220px;
+        object-fit: cover;
+        width: 100%;
+      }
+      .product-card .card-body {
+        padding: 20px;
+      }
+      .product-card .card-title {
+        font-weight: 700;
+        font-size: 16px;
+      }
+      .product-card .card-text {
+        font-size: 13px;
+        color: #666;
+      }
+      .product-card .price {
+        color: var(--sb-green);
+        font-weight: 700;
+        font-size: 16px;
+      }
+
+      /* === REWARDS BANNER === */
+      .rewards-banner {
+        background: var(--sb-dark-green);
+        padding: 60px 0;
+        color: #fff;
+      }
+      .rewards-banner h2 {
+        font-size: 2.2rem;
+        font-weight: 800;
+      }
+      .rewards-banner p {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+      .btn-reward {
+        background: #fff;
+        color: var(--sb-dark-green);
+        border-radius: 25px;
+        padding: 12px 30px;
+        font-weight: 700;
+        border: none;
+      }
+      .btn-reward:hover {
+        background: #e8e8e8;
+      }
+
+      /* === STORY SECTION === */
+      .story-section {
+        padding: 60px 0;
+        background: var(--sb-cream);
+      }
+      .story-section h2 {
+        font-weight: 800;
+        font-size: 2rem;
+        color: var(--sb-dark-green);
+      }
+      .story-section p {
+        color: #444;
+        line-height: 1.7;
+      }
+
+      /* === STORE LOCATOR === */
+      .locator-section {
+        background: var(--sb-green);
+        padding: 50px 0;
+        color: #fff;
+        text-align: center;
+      }
+      .locator-section h3 {
+        font-weight: 700;
+      }
+      .btn-locator {
+        background: #fff;
+        color: var(--sb-green);
+        border-radius: 25px;
+        padding: 12px 30px;
+        font-weight: 700;
+        border: none;
+        margin-top: 15px;
+      }
+      .btn-locator:hover {
+        background: #f0f0f0;
+      }
+
+      /* === FOOTER === */
+      .site-footer {
+        background: var(--sb-dark-green);
+        color: #ccc;
+        padding: 50px 0 20px;
+      }
+      .site-footer h6 {
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+      }
+      .site-footer a {
+        color: #aaa;
+        text-decoration: none;
+        font-size: 13px;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .site-footer a:hover {
+        color: #fff;
+      }
+      .footer-social a {
+        color: #fff;
+        font-size: 22px;
+        margin-right: 18px;
+        display: inline-block;
+      }
+      .footer-social a:hover {
+        color: var(--sb-green);
+      }
+      .footer-bottom {
+        border-top: 1px solid #3a5a50;
+        padding-top: 20px;
+        margin-top: 30px;
+      }
+
+      /* === RESPONSIVE === */
+      @media (max-width: 768px) {
+        .hero-carousel .carousel-item {
+          height: 350px;
+        }
+        .hero-carousel .carousel-caption h2 {
+          font-size: 1.8rem;
+        }
+        .hero-carousel .carousel-caption {
+          left: 5%;
+          max-width: 80%;
+        }
+        .category-card img {
+          width: 80px;
+          height: 80px;
+        }
+        .promo-card {
+          height: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      Get ₹100 off on your first order! Use code: <a href="#">WELCOME100</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
+            alt="Starbucks"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#rewards">Rewards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Gift Cards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#stores">Store Locator</a>
+            </li>
+          </ul>
+          <div class="d-flex gap-2">
+            <a href="#" class="btn btn-nav-signin"
+              ><i class="bi bi-geo-alt me-1"></i>Find a Store</a
+            >
+            <a href="#" class="btn btn-nav-signin">Sign in</a>
+            <a href="#" class="btn btn-nav-join">Join Now</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>
+
+<!-- Hero Carousel -->
+<section class="hero-carousel">
+  <div
+    id="heroCarousel"
+    class="carousel slide"
+    data-bs-ride="carousel"
+    data-bs-interval="4000"
+  >
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#heroCarousel"
+        data-bs-slide-to="0"
+        class="active"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#heroCarousel"
+        data-bs-slide-to="1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#heroCarousel"
+        data-bs-slide-to="2"
+      ></button>
+    </div>
+    <div class="carousel-inner">
+      <div
+        class="carousel-item active"
+        style="
+          background-image: url(&quot;https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1400&q=80&quot;);
+        "
+      >
+        <div class="carousel-caption">
+          <h2>Start your morning the Starbucks way</h2>
+          <p>
+            Handcrafted beverages made with love. Order ahead and skip the line.
+          </p>
+          <a href="#" class="btn btn-hero">Order Now</a>
+        </div>
+      </div>
+      <div
+        class="carousel-item"
+        style="
+          background-image: url(&quot;https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1400&q=80&quot;);
+        "
+      >
+        <div class="carousel-caption">
+          <h2>New Summer Refreshers are here</h2>
+          <p>Cool down with our tropical fruit blends and iced beverages.</p>
+          <a href="#" class="btn btn-hero">Explore Menu</a>
+        </div>
+      </div>
+      <div
+        class="carousel-item"
+        style="
+          background-image: url(&quot;https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1400&q=80&quot;);
+        "
+      >
+        <div class="carousel-caption">
+          <h2>Earn rewards with every sip</h2>
+          <p>
+            Join Starbucks® Rewards and get free drinks, birthday treats & more.
+          </p>
+          <a href="#" class="btn btn-hero">Join Rewards</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category Section -->
+<section class="category-section">
+  <div class="container">
+    <h3 class="text-center fw-bold mb-4">Explore Our Menu</h3>
+    <div class="row g-4 justify-content-center">
+      <div class="col-4 col-md-2 category-card">
+        <img
+          src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=200&h=200&fit=crop"
+          alt="Hot Coffees"
+        />
+        <h6>Hot Coffees</h6>
+      </div>
+      <div class="col-4 col-md-2 category-card">
+        <img
+          src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=200&h=200&fit=crop"
+          alt="Cold Coffees"
+        />
+        <h6>Cold Coffees</h6>
+      </div>
+      <div class="col-4 col-md-2 category-card">
+        <img
+          src="https://images.unsplash.com/photo-1570197571499-166b36435e9f?w=200&h=200&fit=crop"
+          alt="Frappuccino"
+        />
+        <h6>Frappuccino</h6>
+      </div>
+      <div class="col-4 col-md-2 category-card">
+        <img
+          src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=200&h=200&fit=crop"
+          alt="Hot Teas"
+        />
+        <h6>Hot Teas</h6>
+      </div>
+      <div class="col-4 col-md-2 category-card">
+        <img
+          src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=200&h=200&fit=crop"
+          alt="Snacks"
+        />
+        <h6>Snacks</h6>
+      </div>
+      <div class="col-4 col-md-2 category-card">
+        <img
+          src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=200&h=200&fit=crop"
+          alt="Merchandise"
+        />
+        <h6>Merchandise</h6>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Promo Grid -->
+<section class="promo-section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div
+          class="promo-card"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=700&q=80&quot;);
+          "
+        >
+          <div class="promo-overlay">
+            <h4>Summer Specials</h4>
+            <p>Try our refreshing mango dragonfruit lemonade and more</p>
+            <a href="#" class="btn btn-promo">Explore</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div
+          class="promo-card"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=700&q=80&quot;);
+          "
+        >
+          <div class="promo-overlay">
+            <h4>Coffee at Home</h4>
+            <p>Bring the Starbucks experience home with our packaged coffees</p>
+            <a href="#" class="btn btn-promo">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div
+          class="promo-card"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1513530176992-0cf39c4cbed4?w=500&q=80&quot;);
+          "
+        >
+          <div class="promo-overlay">
+            <h4>Gift Cards</h4>
+            <p>Perfect for any occasion</p>
+            <a href="#" class="btn btn-promo">Buy Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div
+          class="promo-card"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=80&quot;);
+          "
+        >
+          <div class="promo-overlay">
+            <h4>Breakfast Menu</h4>
+            <p>Start your day right</p>
+            <a href="#" class="btn btn-promo">View Menu</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div
+          class="promo-card"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=500&q=80&quot;);
+          "
+        >
+          <div class="promo-overlay">
+            <h4>Rewards Program</h4>
+            <p>Earn stars with every purchase</p>
+            <a href="#" class="btn btn-promo">Join Free</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section class="featured-section" id="menu">
+  <div class="container">
+    <h3 class="text-center fw-bold mb-2">Bestsellers</h3>
+    <p class="text-center text-muted mb-5">
+      Our most loved handcrafted beverages
+    </p>
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <div class="card product-card">
+          <img
+            src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop"
+            alt="Caffe Latte"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Caffè Latte</h5>
+            <p class="card-text">Rich espresso balanced with steamed milk</p>
+            <span class="price">₹320</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card product-card">
+          <img
+            src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400&h=300&fit=crop"
+            alt="Caramel Macchiato"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Caramel Macchiato</h5>
+            <p class="card-text">Vanilla, milk, espresso & caramel drizzle</p>
+            <span class="price">₹380</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card product-card">
+          <img
+            src="https://images.unsplash.com/photo-1570197571499-166b36435e9f?w=400&h=300&fit=crop"
+            alt="Mocha Frappuccino"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Mocha Frappuccino</h5>
+            <p class="card-text">Coffee, mocha & milk blended with ice</p>
+            <span class="price">₹395</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card product-card">
+          <img
+            src="https://images.unsplash.com/photo-1534778101976-62847782c213?w=400&h=300&fit=crop"
+            alt="Cappuccino"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Cappuccino</h5>
+            <p class="card-text">Dark espresso with a deep layer of foam</p>
+            <span class="price">₹300</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <a href="#" class="btn btn-nav-join px-4 py-2">View Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- Rewards Banner -->
+<section class="rewards-banner" id="rewards">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7 text-center text-lg-start mb-4 mb-lg-0">
+        <h2>Starbucks® Rewards</h2>
+        <p class="mt-3 mb-4">
+          Join now to start earning free drinks, food, and more. Get a birthday
+          reward, order ahead, and enjoy member-exclusive offers.
+        </p>
+        <a href="#" class="btn btn-reward me-2">Join Now — It's Free</a>
+        <a
+          href="#"
+          class="btn btn-nav-signin text-white"
+          style="border-color: #fff"
+          >Learn More</a
+        >
+      </div>
+      <div class="col-lg-5 text-center">
+        <div class="row text-center">
+          <div class="col-4">
+            <h3 class="fw-bold">150+</h3>
+            <small>Stores in India</small>
+          </div>
+          <div class="col-4">
+            <h3 class="fw-bold">2x</h3>
+            <small>Stars on Tuesdays</small>
+          </div>
+          <div class="col-4">
+            <h3 class="fw-bold">Free</h3>
+            <small>Birthday Drink</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Story Section -->
+<section class="story-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <img
+          src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=600&q=80"
+          alt="Our Story"
+          class="img-fluid rounded-3"
+        />
+      </div>
+      <div class="col-lg-6">
+        <h2>Our Coffee Journey</h2>
+        <p class="mt-3">
+          Every cup of Starbucks coffee is made with ethically sourced, expertly
+          roasted beans. From our farmers to your cup, we're committed to the
+          highest standards of quality and sustainability.
+        </p>
+        <p>
+          With over 150 stores across India, we bring you the Starbucks
+          experience — a place to connect, work, and enjoy handcrafted beverages
+          made with care.
+        </p>
+        <a href="#" class="btn btn-nav-join mt-3">Learn Our Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Store Locator -->
+<section class="locator-section" id="stores">
+  <div class="container">
+    <i class="bi bi-geo-alt-fill" style="font-size: 3rem"></i>
+    <h3 class="mt-3">Find a Store Near You</h3>
+    <p class="mt-2">
+      Locate your nearest Starbucks for a handcrafted experience
+    </p>
+    <a href="#" class="btn btn-locator"
+      ><i class="bi bi-search me-2"></i>Find Store</a
+    >
+  </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4">
+                    <h6>About Us</h6>
+                    <a href="#">Our Company</a>
+                    <a href="#">Our Coffee</a>
+                    <a href="#">Stories & News</a>
+                    <a href="#">Starbucks Archive</a>
+                    <a href="#">Investor Relations</a>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <h6>Careers</h6>
+                    <a href="#">Culture & Values</a>
+                    <a href="#">Inclusion & Diversity</a>
+                    <a href="#">College Achievement</a>
+                    <a href="#">India Careers</a>
+                    <a href="#">International Careers</a>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <h6>Social Impact</h6>
+                    <a href="#">People</a>
+                    <a href="#">Planet</a>
+                    <a href="#">Environmental Goals</a>
+                    <a href="#">Ethical Sourcing</a>
+                    <a href="#">Community Giving</a>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <h6>Quick Links</h6>
+                    <a href="#">Order Online</a>
+                    <a href="#">Gift Cards</a>
+                    <a href="#">Starbucks Rewards</a>
+                    <a href="#">Store Locator</a>
+                    <a href="#">Customer Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center">
+                <div class="footer-social mb-3">
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                </div>
+                <div class="mb-3">
+                    <a href="#" class="d-inline me-3">Privacy Notice</a>
+                    <a href="#" class="d-inline me-3">Terms of Use</a>
+                    <a href="#" class="d-inline">Cookie Policy</a>
+                </div>
+            </div>
+            <p class="text-center mt-3" style="font-size:12px; color:#888;">
+                &copy; 2024 Tata Starbucks Private Limited. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
