@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Responsive Design</title>
+    <!--
+    ============================================
+    CSS RESPONSIVE DESIGN - NOTES
+    ============================================
+
+    Responsive design makes web pages look good on all devices (desktops, tablets, phones).
+
+    KEY CONCEPTS:
+    =============
+
+    1. VIEWPORT META TAG (required for responsive)
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       - width=device-width: sets viewport width to device width
+       - initial-scale=1.0: sets initial zoom level
+
+    2. MEDIA QUERIES (@media)
+       - Apply CSS rules based on device characteristics
+       - Syntax: @media (condition) { styles }
+
+       Common conditions:
+       - max-width: applies when viewport is LESS than or equal to value
+       - min-width: applies when viewport is GREATER than or equal to value
+       - orientation: portrait | landscape
+       - prefers-color-scheme: dark | light
+
+       Mobile-First Approach (recommended):
+         @media (min-width: 576px) { /* Small devices */ }
+         @media (min-width: 768px) { /* Tablets */ }
+         @media (min-width: 992px) { /* Desktops */ }
+         @media (min-width: 1200px) { /* Large desktops */ }
+
+       Desktop-First Approach:
+         @media (max-width: 1200px) { /* Large desktops and below */ }
+         @media (max-width: 992px) { /* Tablets and below */ }
+         @media (max-width: 768px) { /* Small tablets and below */ }
+         @media (max-width: 576px) { /* Phones */ }
+
+    3. RESPONSIVE UNITS
+       - % : relative to parent element
+       - vw : 1% of viewport width (100vw = full width)
+       - vh : 1% of viewport height (100vh = full height)
+       - rem : relative to root font-size (usually 16px)
+       - em : relative to parent's font-size
+       - Use these instead of fixed px for fluid layouts
+
+    4. RESPONSIVE IMAGES
+       - max-width: 100% → image never exceeds container
+       - height: auto → maintains aspect ratio
+       - object-fit: cover | contain | fill → controls image fitting
+
+    5. RESPONSIVE TECHNIQUES
+       - Flexbox: flex-wrap, flex-direction changes at breakpoints
+       - CSS Grid: grid-template-columns with auto-fit/auto-fill
+       - clamp(): clamp(min, preferred, max) for fluid typography
+         Example: font-size: clamp(1rem, 2.5vw, 2rem);
+
+    6. COMMON BREAKPOINTS (industry standard):
+       - 320px  : Small phones
+       - 480px  : Larger phones
+       - 576px  : Small devices
+       - 768px  : Tablets
+       - 992px  : Small desktops/laptops
+       - 1200px : Large desktops
+       - 1400px : Extra large screens
+
+    7. ORIENTATION MEDIA QUERY
+       @media (orientation: portrait) { /* taller than wide */ }
+       @media (orientation: landscape) { /* wider than tall */ }
+
+    ============================================
+    -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 100vw;
+        height: 100vh;
+        background-color: beige;
+      }
+      .container img {
+        width: 400px;
+        height: 600px;
+      }
+      /* @media (orientation: landscape) {
+        .container img {
+          width: 300px;
+          height: 300px;
+          border-radius: 50%;
+        }
+      } */
+      /* @media(max-width:600px){
+
+       } */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="https://images.pexels.com/photos/38145841/pexels-photo-38145841.jpeg"
+        alt=""
+      />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Accordion</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body class="container py-4">
+    <h1 class="text-center mb-4">Bootstrap Accordion</h1>
+
+    <!-- NOTES:
+        - Accordion is built using the collapse component
+        - Structure: .accordion > .accordion-item > .accordion-header + .accordion-collapse
+        - data-bs-parent="#id" makes it so only one item is open at a time
+        - Without data-bs-parent, multiple items can be open simultaneously
+        - .accordion-flush removes borders and rounded corners
+        - .accordion-button is the clickable header element
+        - .accordion-button.collapsed class when item is closed
+        - .accordion-body contains the collapsible content
+    -->
+
+    <!-- Basic Accordion -->
+    <section class="mb-5">
+      <h2>Basic Accordion</h2>
+      <p class="text-muted">Only one item open at a time (data-bs-parent).</p>
+      <div class="accordion" id="basicAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+            >
+              Accordion Item #1 - What is HTML?
+            </button>
+          </h2>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            data-bs-parent="#basicAccordion"
+          >
+            <div class="accordion-body">
+              HTML stands for HyperText Markup Language. It is the standard
+              markup language for creating web pages and web applications.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false">
+                        Accordion Item #2 - What is CSS?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse"
+                    data-bs-parent="#basicAccordion">
+                    <div class="accordion-body">
+                        CSS stands for Cascading Style Sheets. It describes how HTML
+                        elements should be displayed on screen, paper, or other media.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false">
+                        Accordion Item #3 - What is JavaScript?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse"
+                    data-bs-parent="#basicAccordion">
+                    <div class="accordion-body">
+                        JavaScript is a programming language that makes web pages
+                        interactive. It runs in the browser and can modify HTML/CSS dynamically.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flush Accordion -->
+    <section class="mb-5">
+        <h2>Flush Accordion (No Borders)</h2>
+        <div class="accordion accordion-flush" id="flushAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-one">
+                        Flush Item #1
+                    </button>
+                </h2>
+                <div id="flush-one" class="accordion-collapse collapse"
+                    data-bs-parent="#flushAccordion">
+                    <div class="accordion-body">Content for flush item one. No borders or rounded corners.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-two">
+                        Flush Item #2
+                    </button>
+                </h2>
+                <div id="flush-two" class="accordion-collapse collapse"
+                    data-bs-parent="#flushAccordion">
+                    <div class="accordion-body">Content for flush item two.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Always Open Accordion -->
+    <section class="mb-5">
+        <h2>Always Open (Multiple Items)</h2>
+        <p class="text-muted">Without data-bs-parent, multiple items can be open.</p>
+        <div class="accordion" id="alwaysOpenAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#alwaysOpen-one" aria-expanded="true">
+                        Item #1 (open by default)
+                    </button>
+                </h2>
+                <div id="alwaysOpen-one" class="accordion-collapse collapse show">
+                    <div class="accordion-body">This item is open by default. Opening another item won't close this one.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#alwaysOpen-two" aria-expanded="false">
+                        Item #2
+                    </button>
+                </h2>
+                <div id="alwaysOpen-two" class="accordion-collapse collapse">
+                    <div class="accordion-body">Opening this won't close Item #1 because there's no data-bs-parent.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

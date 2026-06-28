@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Toast (Notifications)</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body class="container py-4">
+    <h1 class="text-center mb-4">Bootstrap Toast (Notifications)</h1>
+
+    <!-- NOTES:
+        - Toasts are lightweight notifications designed to mimic push notifications
+        - Structure: .toast > .toast-header + .toast-body
+        - Toasts are hidden by default; use .show or JS to display them
+        - data-bs-autohide="false" keeps toast visible until manually dismissed
+        - data-bs-delay="5000" controls auto-hide delay (default 5000ms)
+        - Use .toast-container for positioning multiple toasts
+        - Position classes: .position-fixed .top-0 .end-0 etc.
+        - Can be colored using .text-bg-primary, .text-bg-success, etc.
+        - .btn-close with data-bs-dismiss="toast" for close button
+        - JS: new bootstrap.Toast(element).show() to trigger
+    -->
+
+    <!-- Toast Trigger Buttons -->
+    <section class="mb-5">
+      <h2>Toast Examples</h2>
+      <p class="text-muted">Click buttons to show toast notifications.</p>
+      <button type="button" class="btn btn-primary" id="showToastBtn">
+        Show Basic Toast
+      </button>
+      <button type="button" class="btn btn-success" id="showSuccessToast">
+        Show Success Toast
+      </button>
+      <button type="button" class="btn btn-danger" id="showDangerToast">
+        Show Danger Toast
+      </button>
+    </section>
+
+    <!-- Toast Container (positioned fixed) -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <!-- Basic Toast -->
+      <div
+        id="basicToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <strong class="me-auto">Notification</strong>
+          <small>just now</small>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">
+          This is a basic toast message. It will auto-hide after 5 seconds.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+        <!-- Success Toast -->
+        <div id="successToast" class="toast align-items-center text-bg-success border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">
+                    ✅ Success! Operation completed successfully.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+
+        <!-- Danger Toast -->
+        <div id="dangerToast" class="toast align-items-center text-bg-danger border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">
+                    ❌ Error! Something went wrong. Please try again.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Static Toast Examples (visible for demo) -->
+    <section class="mb-5">
+        <h2>Static Toast Examples (Always Visible)</h2>
+
+        <!-- Basic Structure -->
+        <div class="toast show mb-3" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">Bootstrap</strong>
+                <small class="text-muted">11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Hello! This is a toast message displayed statically with .show class.
+            </div>
+        </div>
+
+        <!-- Colored Toasts -->
+        <div class="toast show text-bg-primary mb-2" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">Primary colored toast notification.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+        <div class="toast show text-bg-warning mb-2" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">⚠️ Warning! Please check your input.</div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+        <div class="toast show text-bg-info mb-2" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">ℹ️ Info: New updates are available.</div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript to trigger toasts -->
+    <script>
+        document.getElementById('showToastBtn').addEventListener('click', function() {
+            var toast = new bootstrap.Toast(document.getElementById('basicToast'));
+            toast.show();
+        });
+        document.getElementById('showSuccessToast').addEventListener('click', function() {
+            var toast = new bootstrap.Toast(document.getElementById('successToast'));
+            toast.show();
+        });
+        document.getElementById('showDangerToast').addEventListener('click', function() {
+            var toast = new bootstrap.Toast(document.getElementById('dangerToast'));
+            toast.show();
+        });
+    </script>
+
+</body>
+</html>

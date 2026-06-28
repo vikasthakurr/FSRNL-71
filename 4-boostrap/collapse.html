@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Collapse</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body class="container py-4">
+    <h1 class="text-center mb-4">Bootstrap Collapse</h1>
+
+    <!-- NOTES:
+        - Collapse is used to show/hide content with a toggle
+        - Trigger with data-bs-toggle="collapse" and data-bs-target="#id"
+        - Target element needs .collapse class
+        - .collapse.show makes it visible by default
+        - .collapsing is applied during the transition
+        - Can use <a> with href="#id" or <button> with data-bs-target
+        - Multiple targets: use a common class as data-bs-target
+        - Horizontal collapse: wrap content in a div with fixed width
+    -->
+
+    <!-- Basic Collapse -->
+    <section class="mb-5">
+      <h2>Basic Collapse</h2>
+      <p>
+        <a
+          class="btn btn-primary"
+          data-bs-toggle="collapse"
+          href="#collapseExample"
+        >
+          Toggle with Link
+        </a>
+        <button
+          class="btn btn-success"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseExample"
+        >
+          Toggle with Button
+        </button>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          This content is hidden by default and shown when the button is
+          clicked. Both the link and button toggle the same collapse element.
+        </div>
+      </div>
+    </section>
+
+    <!-- Multiple Targets -->
+    <section class="mb-5">
+      <h2>Multiple Targets</h2>
+      <p>
+        <button
+          class="btn btn-primary"
+          data-bs-toggle="collapse"
+          data-bs-target="#multiCollapse1"
+        >
+          Toggle First
+        </button>
+        <button
+          class="btn btn-secondary"
+          data-bs-toggle="collapse"
+          data-bs-target="#multiCollapse2"
+        >
+          Toggle Second
+        </button>
+        <button
+          class="btn btn-dark"
+          data-bs-toggle="collapse"
+          data-bs-target=".multi-collapse"
+        >
+          Toggle Both
+        </button>
+      </p>
+    </section>
+  </body>
+</html>
+        <div class="row">
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse1">
+                    <div class="card card-body">
+                        First collapsible content. Toggled independently or together.
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse2">
+                    <div class="card card-body">
+                        Second collapsible content. Toggled independently or together.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Collapse -->
+    <section class="mb-5">
+        <h2>Horizontal Collapse</h2>
+        <p>
+            <button class="btn btn-info" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseHorizontal">Toggle Horizontal</button>
+        </p>
+        <div style="min-height: 120px;">
+            <div class="collapse collapse-horizontal" id="collapseHorizontal">
+                <div class="card card-body" style="width: 300px;">
+                    This collapses horizontally instead of vertically.
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

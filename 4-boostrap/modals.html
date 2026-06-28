@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Modals</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body class="container py-4">
+    <h1 class="text-center mb-4">Bootstrap Modals</h1>
+
+    <!-- NOTES:
+        - Modals are built with HTML, CSS, and JavaScript
+        - They are positioned over everything in the document
+        - Structure: .modal > .modal-dialog > .modal-content
+        - .modal-content contains: .modal-header, .modal-body, .modal-footer
+        - Trigger with data-bs-toggle="modal" data-bs-target="#id"
+        - Close with data-bs-dismiss="modal"
+        - Sizes: .modal-sm, .modal-lg, .modal-xl
+        - .modal-dialog-centered for vertical centering
+        - .modal-dialog-scrollable for scrollable body
+        - .modal-fullscreen for full-screen modals
+        - Static backdrop: data-bs-backdrop="static"
+    -->
+
+    <!-- Basic Modal Trigger -->
+    <section class="mb-5">
+      <h2>Basic Modal</h2>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#basicModal"
+      >
+        Launch Basic Modal
+      </button>
+    </section>
+  </body>
+</html>
+
+<!-- Basic Modal -->
+<div
+  class="modal fade"
+  id="basicModal"
+  tabindex="-1"
+  aria-labelledby="basicModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="basicModalLabel">Basic Modal Title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>This is the modal body content. You can place any HTML here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Static Backdrop Modal -->
+<section class="mb-5">
+  <h2>Static Backdrop Modal</h2>
+  <p class="text-muted">Clicking outside won't close this modal.</p>
+  <button
+    type="button"
+    class="btn btn-warning"
+    data-bs-toggle="modal"
+    data-bs-target="#staticModal"
+  >
+    Launch Static Modal
+  </button>
+</section>
+
+<div
+  class="modal fade"
+  id="staticModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticModalLabel">Static Backdrop</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          You cannot close this by clicking outside. Only the close button
+          works.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Understood
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Centered & Large Modal -->
+    <section class="mb-5">
+        <h2>Centered & Large Modal</h2>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+            data-bs-target="#centeredModal">Launch Centered Large Modal</button>
+    </section>
+
+    <div class="modal fade" id="centeredModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vertically Centered & Large</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>This modal is vertically centered using .modal-dialog-centered and large with .modal-lg</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scrollable Modal -->
+    <section class="mb-5">
+        <h2>Scrollable Modal</h2>
+        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+            data-bs-target="#scrollableModal">Launch Scrollable Modal</button>
+    </section>
+
+    <div class="modal fade" id="scrollableModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Scrollable Modal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>When content is long, the body scrolls independently.</p>
+                    <p style="height: 500px;">Tall content here...</p>
+                    <p>End of content.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

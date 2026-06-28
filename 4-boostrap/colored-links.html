@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Colored Links</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="container py-4">
+    <h1 class="text-center mb-4">Bootstrap Colored Links</h1>
+
+    <!-- NOTES:
+        - Bootstrap provides .link-{color} classes for colored links
+        - Available colors: primary, secondary, success, danger, warning, info, light, dark
+        - These classes apply the color AND a matching hover color (darkened)
+        - .link-body-emphasis uses the high-emphasis body color
+        - .link-opacity-{value} controls link opacity (10, 25, 50, 75, 100)
+        - .link-opacity-{value}-hover for hover opacity
+        - .link-offset-{value} for underline offset
+        - .link-underline-{color} for colored underlines
+        - .link-underline-opacity-{value} for underline opacity
+        - .icon-link for links with icons
+        - Colored links are useful for matching link colors to context
+    -->
+
+    <!-- Basic Colored Links -->
+    <section class="mb-5">
+      <h2>Basic Colored Links</h2>
+      <p class="text-muted">
+        Use .link-{color} for themed link colors with hover effects.
+      </p>
+      <p><a href="#" class="link-primary">Primary link</a></p>
+      <p><a href="#" class="link-secondary">Secondary link</a></p>
+      <p><a href="#" class="link-success">Success link</a></p>
+      <p><a href="#" class="link-danger">Danger link</a></p>
+      <p><a href="#" class="link-warning">Warning link</a></p>
+      <p><a href="#" class="link-info">Info link</a></p>
+      <p><a href="#" class="link-light">Light link</a></p>
+      <p><a href="#" class="link-dark">Dark link</a></p>
+      <p><a href="#" class="link-body-emphasis">Body emphasis link</a></p>
+    </section>
+
+    <!-- Link Opacity -->
+    <section class="mb-5">
+      <h2>Link Opacity</h2>
+      <p class="text-muted">Control the opacity of links.</p>
+      <p><a href="#" class="link-primary link-opacity-10">Opacity 10</a></p>
+      <p><a href="#" class="link-primary link-opacity-25">Opacity 25</a></p>
+      <p><a href="#" class="link-primary link-opacity-50">Opacity 50</a></p>
+      <p><a href="#" class="link-primary link-opacity-75">Opacity 75</a></p>
+      <p><a href="#" class="link-primary link-opacity-100">Opacity 100</a></p>
+    </section>
+  </body>
+</html>
+
+    <!-- Link Underline Variants -->
+    <section class="mb-5">
+        <h2>Link Underline Colors</h2>
+        <p><a href="#" class="link-underline-primary">Primary underline</a></p>
+        <p><a href="#" class="link-underline-secondary">Secondary underline</a></p>
+        <p><a href="#" class="link-underline-success">Success underline</a></p>
+        <p><a href="#" class="link-underline-danger">Danger underline</a></p>
+        <p><a href="#" class="link-underline-warning">Warning underline</a></p>
+        <p><a href="#" class="link-underline-info">Info underline</a></p>
+    </section>
+
+    <!-- Underline Opacity -->
+    <section class="mb-5">
+        <h2>Underline Opacity</h2>
+        <p><a href="#" class="link-offset-2 link-underline link-underline-opacity-0">Underline opacity 0</a></p>
+        <p><a href="#" class="link-offset-2 link-underline link-underline-opacity-10">Underline opacity 10</a></p>
+        <p><a href="#" class="link-offset-2 link-underline link-underline-opacity-25">Underline opacity 25</a></p>
+        <p><a href="#" class="link-offset-2 link-underline link-underline-opacity-50">Underline opacity 50</a></p>
+        <p><a href="#" class="link-offset-2 link-underline link-underline-opacity-75">Underline opacity 75</a></p>
+        <p><a href="#" class="link-offset-2 link-underline link-underline-opacity-100">Underline opacity 100</a></p>
+    </section>
+
+    <!-- Link Offset -->
+    <section class="mb-5">
+        <h2>Underline Offset</h2>
+        <p class="text-muted">Control distance between text and underline.</p>
+        <p><a href="#" class="link-offset-1">Offset 1</a></p>
+        <p><a href="#" class="link-offset-2">Offset 2</a></p>
+        <p><a href="#" class="link-offset-3">Offset 3</a></p>
+    </section>
+
+    <!-- Practical Usage Examples -->
+    <section class="mb-5">
+        <h2>Practical Usage Examples</h2>
+        <div class="alert alert-success">
+            Task completed successfully! <a href="#" class="link-success fw-bold">View details</a>
+        </div>
+        <div class="alert alert-danger">
+            Error occurred. <a href="#" class="link-danger fw-bold">Learn more</a>
+        </div>
+        <div class="card p-3">
+            <p>Read our <a href="#" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">documentation</a> for more info.</p>
+        </div>
+    </section>
+
+</body>
+</html>

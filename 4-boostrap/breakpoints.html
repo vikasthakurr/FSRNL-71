@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Breakpoints</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .demo-box {
+        padding: 15px;
+        margin-bottom: 10px;
+        border: 2px solid #0d6efd;
+        border-radius: 5px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="container py-4">
+    <h1 class="text-center mb-4">Bootstrap Breakpoints</h1>
+
+    <!-- NOTES:
+        - Breakpoints are customizable widths that determine responsive behavior
+        - Bootstrap uses 6 default breakpoints (also called grid tiers):
+
+          Breakpoint    | Class infix | Dimensions
+          ============================================
+          Extra small   | (none)      | <576px
+          Small         | sm          | ≥576px
+          Medium        | md          | ≥768px
+          Large         | lg          | ≥992px
+          Extra large   | xl          | ≥1200px
+          XXL           | xxl         | ≥1400px
+
+        - Breakpoints are used in responsive utility classes:
+          .d-none .d-md-block → hidden on small, visible from medium up
+          .col-12 .col-md-6 → full width on small, half on medium up
+          .text-center .text-lg-start → centered on small, left-aligned on large
+
+        - Mobile-first approach: styles apply from that breakpoint and UP
+        - Media queries use min-width (mobile first)
+    -->
+
+    <!-- Breakpoint Reference Table -->
+    <section class="mb-5">
+      <h2>Breakpoint Reference</h2>
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>Breakpoint</th>
+            <th>Class Infix</th>
+            <th>Dimensions</th>
+            <th>Container max-width</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Extra Small</td>
+            <td><code>(none)</code></td>
+            <td>&lt;576px</td>
+            <td>100%</td>
+          </tr>
+          <tr>
+            <td>Small</td>
+            <td><code>sm</code></td>
+            <td>≥576px</td>
+            <td>540px</td>
+          </tr>
+          <tr>
+            <td>Medium</td>
+            <td><code>md</code></td>
+            <td>≥768px</td>
+            <td>720px</td>
+          </tr>
+          <tr>
+            <td>Large</td>
+            <td><code>lg</code></td>
+            <td>≥992px</td>
+            <td>960px</td>
+          </tr>
+          <tr>
+            <td>Extra Large</td>
+            <td><code>xl</code></td>
+            <td>≥1200px</td>
+            <td>1140px</td>
+          </tr>
+          <tr>
+            <td>XXL</td>
+            <td><code>xxl</code></td>
+            <td>≥1400px</td>
+            <td>1320px</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Responsive Display Example -->
+    <section class="mb-5">
+      <h2>Responsive Display Utilities</h2>
+      <p class="text-muted">
+        Resize browser to see elements show/hide at different breakpoints.
+      </p>
+
+      <div class="demo-box d-block d-sm-none bg-danger text-white">
+        Visible only on XS (&lt;576px)
+      </div>
+      <div class="demo-box d-none d-sm-block d-md-none bg-warning">
+        Visible only on SM (≥576px and &lt;768px)
+      </div>
+      <div class="demo-box d-none d-md-block d-lg-none bg-info text-white">
+        Visible only on MD (≥768px and &lt;992px)
+      </div>
+      <div class="demo-box d-none d-lg-block d-xl-none bg-success text-white">
+        Visible only on LG (≥992px and &lt;1200px)
+      </div>
+      <div class="demo-box d-none d-xl-block d-xxl-none bg-primary text-white">
+        Visible only on XL (≥1200px and &lt;1400px)
+      </div>
+      <div class="demo-box d-none d-xxl-block bg-dark text-white">
+        Visible only on XXL (≥1400px)
+      </div>
+    </section>
+
+    <!-- Container Types -->
+    <section class="mb-5">
+      <h2>Container Types</h2>
+      <p class="text-muted">
+        Different container classes use breakpoints differently.
+      </p>
+      <table class="table table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Class</th>
+            <th>Behavior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>.container</code></td>
+            <td>Fixed-width at each breakpoint</td>
+          </tr>
+          <tr>
+            <td><code>.container-fluid</code></td>
+            <td>100% width at all breakpoints</td>
+          </tr>
+          <tr>
+            <td><code>.container-sm</code></td>
+            <td>100% until sm breakpoint, then fixed</td>
+          </tr>
+          <tr>
+            <td><code>.container-md</code></td>
+            <td>100% until md breakpoint, then fixed</td>
+          </tr>
+          <tr>
+            <td><code>.container-lg</code></td>
+            <td>100% until lg breakpoint, then fixed</td>
+          </tr>
+          <tr>
+            <td><code>.container-xl</code></td>
+            <td>100% until xl breakpoint, then fixed</td>
+          </tr>
+          <tr>
+            <td><code>.container-xxl</code></td>
+            <td>100% until xxl breakpoint, then fixed</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Responsive Text Alignment -->
+    <section class="mb-5">
+      <h2>Responsive Text Alignment</h2>
+      <p class="text-center text-md-start">
+        Centered on mobile, left-aligned from MD up
+      </p>
+      <p class="text-center text-lg-end">
+        Centered on mobile, right-aligned from LG up
+      </p>
+    </section>
+  </body>
+</html>

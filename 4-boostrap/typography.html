@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Typography</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="container py-4">
+    <h1 class="text-center mb-4">Bootstrap Typography</h1>
+
+    <!-- NOTES:
+        - Bootstrap sets a default font-size of 1rem (16px) and line-height of 1.5
+        - All headings (h1-h6) have top margin removed and bottom margin of 0.5rem
+        - .display-1 to .display-6 classes create larger, more prominent headings
+        - .lead makes a paragraph stand out
+        - .text-muted, .text-primary, etc. for text colors
+        - .fw-bold, .fw-light, .fst-italic for font weight/style
+        - .text-start, .text-center, .text-end for alignment
+        - .text-uppercase, .text-lowercase, .text-capitalize for text transform
+    -->
+
+    <!-- Headings -->
+    <section class="mb-5">
+      <h2>Headings</h2>
+      <p class="text-muted">
+        Bootstrap styles all HTML headings h1 through h6.
+      </p>
+      <h1>h1. Bootstrap heading</h1>
+      <h2>h2. Bootstrap heading</h2>
+      <h3>h3. Bootstrap heading</h3>
+      <h4>h4. Bootstrap heading</h4>
+      <h5>h5. Bootstrap heading</h5>
+      <h6>h6. Bootstrap heading</h6>
+    </section>
+
+    <!-- Display Headings -->
+    <section class="mb-5">
+      <h2>Display Headings</h2>
+      <p class="text-muted">Larger, slightly more opinionated heading style.</p>
+      <h1 class="display-1">Display 1</h1>
+      <h1 class="display-2">Display 2</h1>
+      <h1 class="display-3">Display 3</h1>
+      <h1 class="display-4">Display 4</h1>
+      <h1 class="display-5">Display 5</h1>
+      <h1 class="display-6">Display 6</h1>
+    </section>
+
+    <!-- Lead Paragraph -->
+    <section class="mb-5">
+      <h2>Lead Paragraph</h2>
+      <p class="lead">
+        This is a lead paragraph. It stands out from regular paragraphs using
+        larger font-size and lighter font-weight.
+      </p>
+      <p>This is a normal paragraph for comparison.</p>
+    </section>
+
+    <!-- Inline Text Elements -->
+    <section class="mb-5">
+      <h2>Inline Text Elements</h2>
+      <p><mark>Highlighted text</mark> using &lt;mark&gt; tag</p>
+      <p><del>Deleted text</del> using &lt;del&gt; tag</p>
+      <p><s>Strikethrough text</s> using &lt;s&gt; tag</p>
+      <p><ins>Inserted text</ins> using &lt;ins&gt; tag</p>
+      <p><u>Underlined text</u> using &lt;u&gt; tag</p>
+      <p><small>Small text</small> using &lt;small&gt; tag</p>
+      <p><strong>Bold text</strong> using &lt;strong&gt; tag</p>
+      <p><em>Italicized text</em> using &lt;em&gt; tag</p>
+    </section>
+
+    <!-- Text Utilities -->
+    <section class="mb-5">
+      <h2>Text Utilities</h2>
+      <p class="fw-bold">Bold text (.fw-bold)</p>
+      <p class="fw-bolder">Bolder weight text (.fw-bolder)</p>
+      <p class="fw-semibold">Semibold weight text (.fw-semibold)</p>
+      <p class="fw-medium">Medium weight text (.fw-medium)</p>
+      <p class="fw-normal">Normal weight text (.fw-normal)</p>
+      <p class="fw-light">Light weight text (.fw-light)</p>
+      <p class="fst-italic">Italic text (.fst-italic)</p>
+      <p class="text-decoration-underline">Underline text</p>
+      <p class="text-decoration-line-through">Line-through text</p>
+    </section>
+
+    <!-- Text Alignment -->
+    <section class="mb-5">
+      <h2>Text Alignment</h2>
+      <p class="text-start">Left aligned text (.text-start)</p>
+      <p class="text-center">Center aligned text (.text-center)</p>
+      <p class="text-end">Right aligned text (.text-end)</p>
+    </section>
+
+    <!-- Text Transform -->
+    <section class="mb-5">
+      <h2>Text Transform</h2>
+      <p class="text-lowercase">LOWERCASED TEXT (.text-lowercase)</p>
+      <p class="text-uppercase">uppercased text (.text-uppercase)</p>
+      <p class="text-capitalize">capitalized text (.text-capitalize)</p>
+    </section>
+
+    <!-- Blockquotes -->
+    <section class="mb-5">
+      <h2>Blockquotes</h2>
+      <blockquote class="blockquote">
+        <p>A well-known quote, contained in a blockquote element.</p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        Someone famous in <cite title="Source Title">Source Title</cite>
+      </figcaption>
+    </section>
+
+    <!-- Lists -->
+    <section class="mb-5">
+      <h2>Lists</h2>
+      <h5>Unstyled List</h5>
+      <ul class="list-unstyled">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+
+      <h5>Inline List</h5>
+      <ul class="list-inline">
+        <li class="list-inline-item">Item 1</li>
+        <li class="list-inline-item">Item 2</li>
+        <li class="list-inline-item">Item 3</li>
+      </ul>
+    </section>
+  </body>
+</html>

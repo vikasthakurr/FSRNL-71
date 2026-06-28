@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Buttons</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="container py-4">
+    <h1 class="text-center mb-4">Bootstrap Buttons</h1>
+
+    <!-- NOTES:
+        - Base class: .btn + variant (.btn-primary, .btn-danger, etc.)
+        - Outline variants: .btn-outline-primary, .btn-outline-danger, etc.
+        - Sizes: .btn-lg (large), .btn-sm (small)
+        - .btn-block (full width) - use .w-100 or d-grid in BS5
+        - States: .active, .disabled, or disabled attribute
+        - Can be used on <a>, <button>, <input> elements
+        - Button groups: .btn-group wraps multiple buttons together
+    -->
+
+    <!-- Basic Buttons -->
+    <section class="mb-5">
+      <h2>Basic Buttons</h2>
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-success">Success</button>
+      <button class="btn btn-danger">Danger</button>
+      <button class="btn btn-warning">Warning</button>
+      <button class="btn btn-info">Info</button>
+      <button class="btn btn-light">Light</button>
+      <button class="btn btn-dark">Dark</button>
+      <button class="btn btn-link">Link</button>
+    </section>
+
+    <!-- Outline Buttons -->
+    <section class="mb-5">
+      <h2>Outline Buttons</h2>
+      <button class="btn btn-outline-primary">Primary</button>
+      <button class="btn btn-outline-secondary">Secondary</button>
+      <button class="btn btn-outline-success">Success</button>
+      <button class="btn btn-outline-danger">Danger</button>
+      <button class="btn btn-outline-warning">Warning</button>
+      <button class="btn btn-outline-info">Info</button>
+      <button class="btn btn-outline-dark">Dark</button>
+    </section>
+
+    <!-- Button Sizes -->
+    <section class="mb-5">
+      <h2>Button Sizes</h2>
+      <button class="btn btn-primary btn-lg">Large Button</button>
+      <button class="btn btn-primary">Default Button</button>
+      <button class="btn btn-primary btn-sm">Small Button</button>
+    </section>
+  </body>
+</html>
+
+    <!-- Full Width Buttons -->
+    <section class="mb-5">
+        <h2>Full Width Buttons</h2>
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary">Full Width Button</button>
+            <button class="btn btn-outline-success">Full Width Outline</button>
+        </div>
+    </section>
+
+    <!-- Disabled Buttons -->
+    <section class="mb-5">
+        <h2>Disabled Buttons</h2>
+        <button class="btn btn-primary" disabled>Disabled Primary</button>
+        <button class="btn btn-secondary" disabled>Disabled Secondary</button>
+        <a href="#" class="btn btn-danger disabled" aria-disabled="true">Disabled Link</a>
+    </section>
+
+    <!-- Button Groups -->
+    <section class="mb-5">
+        <h2>Button Groups</h2>
+        <div class="btn-group" role="group" aria-label="Basic button group">
+            <button type="button" class="btn btn-primary">Left</button>
+            <button type="button" class="btn btn-primary">Middle</button>
+            <button type="button" class="btn btn-primary">Right</button>
+        </div>
+        <br><br>
+        <div class="btn-group" role="group">
+            <button class="btn btn-outline-danger">HTML</button>
+            <button class="btn btn-outline-danger">CSS</button>
+            <button class="btn btn-outline-danger">JS</button>
+        </div>
+    </section>
+
+    <!-- Button with Icons -->
+    <section class="mb-5">
+        <h2>Button on Different Elements</h2>
+        <a href="#" class="btn btn-primary" role="button">Link Button</a>
+        <button type="submit" class="btn btn-success">Submit Button</button>
+        <input type="button" class="btn btn-info" value="Input Button">
+        <input type="reset" class="btn btn-warning" value="Reset Button">
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Position</title>
+    <!--
+    ============================================
+    CSS POSITION PROPERTY - NOTES
+    ============================================
+
+    The 'position' property specifies how an element is positioned in a document.
+    It works with top, right, bottom, left properties to set the final position.
+
+    1. STATIC (default)
+       - Elements are positioned in normal document flow
+       - top, right, bottom, left have NO EFFECT
+       - This is the default for every element
+
+    2. RELATIVE
+       - Positioned relative to its NORMAL position
+       - top/left/right/bottom offset it from where it would normally be
+       - The original space is PRESERVED (other elements don't move)
+       - Creates a new stacking context for z-index
+
+    3. ABSOLUTE
+       - Removed from normal document flow (no space reserved)
+       - Positioned relative to nearest POSITIONED ancestor (not static)
+       - If no positioned ancestor, it uses the <html> / viewport
+       - Other elements behave as if this element doesn't exist
+
+    4. FIXED
+       - Removed from normal document flow
+       - Positioned relative to the VIEWPORT (browser window)
+       - Does NOT move when page is scrolled
+       - Common use: fixed navbars, back-to-top buttons, chat widgets
+
+    5. STICKY
+       - Hybrid of relative and fixed
+       - Behaves like RELATIVE until scroll threshold is reached
+       - Then behaves like FIXED (sticks to the defined position)
+       - Requires at least one of: top, right, bottom, or left
+       - Only sticks within its parent container
+       - Common use: sticky headers, table headers
+
+    HELPER PROPERTIES:
+       - top: distance from the top edge
+       - right: distance from the right edge
+       - bottom: distance from the bottom edge
+       - left: distance from the left edge
+       - z-index: controls stacking order (higher = on top)
+         (z-index only works on positioned elements, not static)
+
+    STACKING CONTEXT:
+       - z-index determines which element appears on top
+       - Only works on elements with position: relative/absolute/fixed/sticky
+       - Higher z-index = element appears in front
+    ============================================
+    -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 800px;
+        height: 9000px;
+        background-color: beige;
+        /* position: relative; */
+      }
+      .child {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        margin: 10px;
+      }
+      /* .child-1 {
+        position: static;
+        /* top: 60px;
+        left: 50px;
+      } */
+      /* .child-2{
+        position: relative;
+        left: 150px;
+      } */
+      /* .child-3 {
+        position: absolute;
+        top: 10px;
+        left: 150px;
+        background-color: blue;
+      } */
+      /* .child-4{
+        position: fixed;
+        left: 400px;
+       } */
+      .child-5 {
+        position: sticky;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="child child-1">position-1</div>
+      <div class="child child-2">position-2</div>
+      <div class="child child-3">position-3</div>
+      <div class="child child-4">position-4</div>
+      <div class="child child-5">position-5</div>
+    </div>
+  </body>
+</html>
