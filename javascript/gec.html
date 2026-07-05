@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Execution Context</title>
+  </head>
+  <body>
+    <script>
+      // Global Execution Context (GEC) & Its Phases
+
+      // 1. What is an Execution Context?
+
+      // An Execution Context is an environment where JavaScript code
+      // is evaluated and executed. Think of it as a "container" that
+      // holds all the information needed to run a piece of code.
+
+      // Types of Execution Context:
+      //   a) Global Execution Context (GEC) — Created when the script first loads
+      //   b) Function Execution Context (FEC) — Created every time a function is called
+      //   c) Eval Execution Context — Created inside eval() (rarely used)
+
+      // Only ONE Global Execution Context exists per program.
+      // Multiple Function Execution Contexts can exist (one per function call).
+
+      // 2. Global Execution Context (GEC)
+
+      // The GEC is the first execution context created when your JS file runs.
+      // It does two things:
+      //   - Creates the global object (window in browser, global in Node.js)
+      //   - Creates the "this" keyword and binds it to the global object
+
+      // Before any code executes:
+      //   this === window  (in browser)
+      //   this === global  (in Node.js)
+
+      // 3. Two Phases of Execution Context
+
+      // Every execution context (GEC or FEC) goes through TWO phases:
+
+      // Phase 1: CREATION PHASE (Memory Allocation Phase)
+      // ------------------------------------------------
+      // In this phase, the JS engine:
+      //   a) Creates the global object (window / global)
+      //   b) Creates "this" and binds it to the global object
+      //   c) Sets up the memory heap (allocates memory for variables & functions)
+      //   d) Scans the code and:
+      //      - For var declarations → allocates memory, assigns "undefined"
+      //      - For let/const declarations → allocates memory, but NOT initialized
+      //        (they are in the "Temporal Dead Zone" until their line is reached)
+      //      - For function declarations → stores the ENTIRE function in memory
+      //        (this is why functions can be called before they are declared)
+
+      // Phase 2: EXECUTION PHASE (Code Execution Phase)
+      // ------------------------------------------------
+      // In this phase, the JS engine:
+      //   a) Executes code line by line (top to bottom)
+      //   b) Assigns actual values to variables
+      //   c) When a function is called, a new Function Execution Context is created
+      //      (which also goes through creation + execution phases)
+
+      // 4. Example: Step-by-step Execution
+
+      var a = 10;
+      function double(n) {
+        return n * 2;
+      }
+      var result1 = double(5);
+      var result2 = double(a);
+      console.log(result1); // 10
+      console.log(result2); // 20
+
+      // CREATION PHASE (before any code runs):
+      // Memory:
+      //   a         → undefined
+      //   double    → function double(n) { return n * 2; }  (full function stored)
+      //   result1   → undefined
+      //   result2   → undefined
+
+      // EXECUTION PHASE (line by line):
+      //   Line 1: a = 10                    → a is now 10
+      //   Line 2-4: function declaration    → already handled in creation phase, skip
+      //   Line 5: result1 = double(5)       → creates new FEC for double(5)
+      //      FEC Creation Phase: n = undefined
+      //      FEC Execution Phase: n = 5, returns 5 * 2 = 10
+      //      result1 = 10
+      //   Line 6: result2 = double(a)       → creates new FEC for double(10)
+      //      FEC Creation Phase: n = undefined
+      //      FEC Execution Phase: n = 10, returns 10 * 2 = 20
+      //      result2 = 20
+      //   Line 7: console.log(result1)      → prints 10
+      //   Line 8: console.log(result2)      → prints 20
+
+      // 5. Hoisting — A Side Effect of the Creation Phase
+
+      // "Hoisting" is not moving code to the top. It's a result of the
+      // creation phase scanning and allocating memory before execution.
+
+      // var hoisting:
+      console.log(x); // undefined (memory allocated, but value not assigned yet)
+      var x = 5;
+      console.log(x); // 5
+
+      // function hoisting:
+      greet(); // "Hello!" (entire function is stored in creation phase)
+      function greet() {
+        console.log("Hello!");
+      }
+
+      // let/const hoisting (Temporal Dead Zone):
+      // console.log(b); // ReferenceError: Cannot access 'b' before initialization
+      // let b = 20;
+
+      // let and const ARE hoisted (memory is allocated in creation phase)
+      // but they are NOT initialized. Accessing them before declaration
+      // throws a ReferenceError. The zone between hoisting and declaration
+      // is called the "Temporal Dead Zone" (TDZ).
+
+      // 6. Call Stack (Execution Context Stack)
+
+      // JS uses a Call Stack to manage execution contexts.
+      // It follows LIFO (Last In, First Out).
+
+      // How it works:
+      //   1. When script starts → GEC is pushed onto the stack
+      //   2. When a function is called → new FEC is pushed onto the stack
+      //   3. When a function returns → its FEC is popped off the stack
+      //   4. When all code is done → GEC is popped off (program ends)
+
+      // Visual Example for the code above:
+      //
+      //   |                  |
+      //   |  double(a) FEC   |  ← pushed when double(a) is called
+      //   |  double(5) FEC   |  ← pushed when double(5) is called (then popped)
+      //   |  GEC             |  ← always at the bottom
+      //   |__________________|
+      //
+      // Actual order:
+      //   [GEC] → [GEC, double(5)] → [GEC] → [GEC, double(a)] → [GEC] → [] (done)
+
+      // 7. Function Execution Context in Detail
+
+      // Each FEC has:
+      //   a) Variable Environment: stores local variables, arguments
+      //   b) Scope Chain: reference to outer (parent) scope
+      //   c) this: depends on how the function is called
+
+      function outer() {
+        var outerVar = "I'm outer";
+
+        function inner() {
+          var innerVar = "I'm inner";
+          console.log(outerVar); // accessible via scope chain
+        }
+
+        inner();
+      }
+      outer();
+
+      // When inner() runs:
+      //   - Its FEC has: innerVar, scope chain → outer's scope → global scope
+      //   - It can access outerVar through the scope chain
+
+      // 8. var vs let vs const in Execution Context
+
+      // | Keyword | Hoisted? | Initialized in Creation Phase? | TDZ?  | Scope    |
+      // |---------|----------|-------------------------------|-------|----------|
+      // | var     | Yes      | Yes (to undefined)            | No    | Function |
+      // | let     | Yes      | No (uninitialized)            | Yes   | Block    |
+      // | const   | Yes      | No (uninitialized)            | Yes   | Block    |
+
+      // var → function scoped, can be re-declared, can be updated
+      // let → block scoped, cannot be re-declared, can be updated
+      // const → block scoped, cannot be re-declared, cannot be updated
+
+      // 9. Temporal Dead Zone (TDZ) — In Depth
+
+      // The TDZ starts at the beginning of the block/scope and ends
+      // where the let/const variable is declared.
+
+      {
+        // TDZ for 'myVar' starts here
+        // console.log(myVar); // ReferenceError!
+        // TDZ continues...
+        let myVar = 42; // TDZ ends here
+        console.log(myVar); // 42 — works fine
+      }
+
+      // Why TDZ exists:
+      //   - Catches bugs early (using variables before they're ready)
+      //   - Makes code more predictable
+      //   - Prevents confusing behavior that var causes
+
+      // 10. Summary
+
+      // - Execution Context = environment where code runs
+      // - GEC is created once when the script loads
+      // - Every EC has 2 phases: Creation Phase + Execution Phase
+      // - Creation Phase: memory allocation (var=undefined, functions=full code, let/const=uninitialized)
+      // - Execution Phase: code runs line by line, values are assigned
+      // - Hoisting = result of creation phase (not code movement)
+      // - Call Stack manages execution contexts (LIFO)
+      // - let/const have TDZ — cannot be accessed before declaration
+      // - Each function call creates a new Function Execution Context
+    </script>
+  </body>
+</html>

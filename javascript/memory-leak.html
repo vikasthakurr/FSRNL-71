@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Memory Leak Demo</title>
+  </head>
+  <body>
+    <h2>Memory Leak Example</h2>
+    <button id="start">Start Leak</button>
+    <button id="stop">Stop Leak</button>
+
+    <script>
+      // Memory Leaks in JavaScript
+
+      // 1. What is a Memory Leak?
+
+      // A memory leak happens when your program allocates memory but
+      // fails to release it when it's no longer needed.
+      // The garbage collector CANNOT free this memory because
+      // references to it still exist (even though you don't use it).
+
+      // Result:
+      //   - Memory usage keeps growing over time
+      //   - App becomes slower and slower
+      //   - Eventually crashes (out of memory)
+      //   - Poor user experience (laggy, unresponsive)
+
+      // 2. How JavaScript Memory Works (Quick Recap)
+
+      // - JS automatically manages memory (unlike C/C++ where you manually free it)
+      // - Garbage Collector (GC) uses "Mark and Sweep" algorithm:
+      //   1. Starts from roots (global object, call stack, closures)
+      //   2. Marks all reachable objects
+      //   3. Sweeps (frees) unreachable objects
+      // - A leak occurs when objects are REACHABLE but NOT NEEDED
+
+      // 3. Common Causes of Memory Leaks
+
+      // Cause 1: Forgotten Timers (setInterval / setTimeout)
+      // ---------------------------------------------------
+      // If you start an interval but never clear it, it keeps running
+      // and keeps references to variables alive forever.
+
+      let leakyArray = [];
+      let intervalId;
+
+      document.getElementById("start").addEventListener("click", () => {
+        intervalId = setInterval(() => {
+          // Keep pushing large data into the array
+          leakyArray.push(new Array(1000000).fill("leak!"));
+          console.log("Array size:", leakyArray.length);
+        }, 500);
+      });
+
+      document.getElementById("stop").addEventListener("click", () => {
+        clearInterval(intervalId);
+        console.log("Stopped leaking, but memory is still used.");
+        // The interval is stopped, but leakyArray still holds all the data!
+        // Fix: leakyArray = []; (release the reference)
+      });
+
+      // Fix: Always clear timers AND release references
+      // clearInterval(intervalId);
+      // leakyArray = [];  // now GC can free the memory
+
+      // Cause 2: Forgotten Event Listeners
+      // -----------------------------------
+      // Event listeners hold references to their callback and any
+      // variables in the closure. If you don't remove them, they persist.
+
+      // BAD — listener stays even after element is removed
+      function setupBad() {
+        const button = document.createElement("button");
+        document.body.appendChild(button);
+
+        button.addEventListener("click", function handler() {
+          console.log("clicked");
+          // This closure holds reference to 'button' and anything else in scope
+        });
+
+        document.body.removeChild(button);
+        // The button is removed from DOM but the event listener still exists!
+        // GC cannot collect it because the listener holds a reference.
+      }
+
+      // GOOD — remove listener before removing element
+      function setupGood() {
+        const button = document.createElement("button");
+        document.body.appendChild(button);
+
+        function handler() {
+          console.log("clicked");
+        }
+
+        button.addEventListener("click", handler);
+
+        // Cleanup:
+        button.removeEventListener("click", handler);
+        document.body.removeChild(button);
+        // Now both the element and handler can be garbage collected
+      }
+
+      // Cause 3: Closures Holding Unnecessary References
+      // -------------------------------------------------
+      // Closures capture the entire scope, which can keep large objects alive.
+
+      function createLeak() {
+        const hugeData = new Array(1000000).fill("data"); // 1 million items
+
+        return function () {
+          // This closure captures 'hugeData' even if we only use one thing
+          console.log(hugeData.length);
+        };
+      }
+      const leakyFn = createLeak();
+      // hugeData stays in memory as long as leakyFn exists
+
+      // Fix: Only capture what you need
+      function createFixed() {
+        const hugeData = new Array(1000000).fill("data");
+        const length = hugeData.length; // extract only what's needed
+
+        return function () {
+          console.log(length); // only 'length' is captured, hugeData can be GC'd
+        };
+      }
+
+      // Cause 4: Global Variables (Accidental or Intentional)
+      // ------------------------------------------------------
+      // Global variables are NEVER garbage collected (they're always reachable from root).
+
+      // BAD — accidental global
+      function accident() {
+        oops = "I'm a global variable!"; // no let/const/var — becomes window.oops
+      }
+
+      // BAD — intentional but forgotten global cache
+      // window.cache = {};
+      // window.cache.users = fetchUsers(); // grows forever if never cleared
+
+      // Fix: Use local scope, clear globals when done, use WeakMap for caches
+
+      // Cause 5: Detached DOM Elements
+      // --------------------------------
+      // When you remove a DOM element but still hold a JS reference to it,
+      // the element stays in memory (detached from DOM tree but not freed).
+
+      // BAD:
+      let detachedElement;
+      function createAndRemove() {
+        const div = document.createElement("div");
+        div.innerHTML = "Hello World";
+        document.body.appendChild(div);
+        detachedElement = div; // JS reference kept!
+        document.body.removeChild(div); // removed from DOM
+        // But 'detachedElement' still points to it → memory leak!
+      }
+
+      // Fix: Set reference to null after removing
+      // document.body.removeChild(div);
+      // detachedElement = null; // allow GC to collect it
+
+      // Cause 6: Circular References (Less common in modern JS)
+      // ---------------------------------------------------------
+      // Two objects referencing each other — older GC algorithms couldn't handle this.
+      // Modern Mark-and-Sweep handles it fine, but it can still cause issues
+      // with closures and DOM references.
+
+      function circularExample() {
+        let objA = {};
+        let objB = {};
+        objA.ref = objB;
+        objB.ref = objA;
+        // Both reference each other — older reference-counting GC leaked here
+        // Modern GC (Mark and Sweep) handles this correctly
+      }
+
+      // Cause 7: Unbounded Caches / Data Structures
+      // ---------------------------------------------
+      // If you keep adding to an object/array/map without ever removing entries.
+
+      // BAD:
+      const requestCache = {};
+      function cacheResponse(url, data) {
+        requestCache[url] = data; // grows forever!
+      }
+
+      // Fix: Use a bounded cache with eviction
+      // Option 1: Use WeakMap (auto GC when key has no other references)
+      // Option 2: Implement LRU cache with max size
+      // Option 3: Add TTL (time-to-live) and periodically clean up
+
+      // 4. How to Detect Memory Leaks
+
+      // a) Chrome DevTools → Memory Tab
+      //    - Take Heap Snapshot before and after an action
+      //    - Compare snapshots to see what's growing
+      //    - Look for "Detached DOM tree" entries
+
+      // b) Chrome DevTools → Performance Tab
+      //    - Record a session
+      //    - Look at the "JS Heap" graph — if it keeps going up without
+      //      coming back down, you have a leak
+
+      // c) Chrome DevTools → Performance Monitor
+      //    - Real-time view of JS heap size, DOM nodes count, event listeners count
+
+      // d) Node.js: process.memoryUsage()
+      //    console.log(process.memoryUsage());
+      //    // { rss, heapTotal, heapUsed, external, arrayBuffers }
+      //    // If heapUsed keeps growing → probable leak
+
+      // e) Node.js: --inspect flag + Chrome DevTools
+      //    node --inspect server.js
+      //    // Open chrome://inspect → take heap snapshots
+
+      // 5. WeakRef and WeakMap — Tools to Prevent Leaks
+
+      // WeakMap: keys are weakly held — if no other reference exists,
+      // the key-value pair is automatically garbage collected.
+
+      // const cache = new WeakMap();
+      // let user = { name: "Vikas" };
+      // cache.set(user, "some cached data");
+      // user = null; // the entry in WeakMap is now eligible for GC!
+
+      // WeakRef (ES2021): holds a weak reference to an object
+      // const ref = new WeakRef(largeObject);
+      // ref.deref(); // returns the object or undefined if GC'd
+
+      // FinalizationRegistry (ES2021): callback when object is GC'd
+      // const registry = new FinalizationRegistry((value) => {
+      //   console.log(`${value} was garbage collected`);
+      // });
+      // registry.register(someObject, "my object");
+
+      // 6. Best Practices to Avoid Memory Leaks
+
+      // - Always clearInterval() and clearTimeout() when done
+      // - Remove event listeners when element is removed (or use { once: true })
+      // - Avoid global variables — use local scope
+      // - Set references to null when you no longer need them
+      // - Use WeakMap/WeakSet for caches tied to object lifetimes
+      // - Be careful with closures — don't capture more than needed
+      // - Clean up in component unmount (React: useEffect cleanup, Vue: onUnmounted)
+      // - Use bounded data structures (max size, TTL)
+      // - Profile your app regularly with DevTools Memory tab
+      // - In Node.js, monitor process.memoryUsage() in production
+
+      // 7. Real-World Example: SPA Memory Leak
+
+      // Single Page Applications are prone to leaks because the page never
+      // fully reloads. Common SPA leak patterns:
+      //   - Route change but old component's listeners still active
+      //   - WebSocket connections not closed
+      //   - Global state growing unboundedly
+      //   - Observers (IntersectionObserver, MutationObserver) not disconnected
+
+      // React cleanup example:
+      // useEffect(() => {
+      //   const interval = setInterval(() => fetchData(), 5000);
+      //   return () => clearInterval(interval);  // cleanup on unmount!
+      // }, []);
+
+      // 8. Summary
+
+      // - Memory leak = allocated memory that's never freed
+      // - GC can't free memory if references still exist
+      // - Top causes: forgotten timers, event listeners, closures, globals,
+      //   detached DOM nodes, unbounded caches
+      // - Detect with: Chrome DevTools Memory tab, heap snapshots, Performance monitor
+      // - Prevent with: cleanup functions, WeakMap, null references, bounded caches
+      // - SPAs need extra care since page doesn't reload
+    </script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+garbagecollectiton:https://dev.to/thebuildguy/working-of-garbage-collection-in-javascript-under-the-hood-231e
+2.https://www.geeksforgeeks.org/javascript/garbage-collection-in-javascript/
+
+memory-leakage:https://auth0.com/blog/four-types-of-leaks-in-your-javascript-code-and-how-to-get-rid-of-them/
+2.https://www.geeksforgeeks.org/javascript/how-to-handle-memory-leaks-in-javascript/
+
