@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // ========== CLOSURE NOTES ==========
+
+      // What is a Closure?
+      // A closure is a function that remembers and can access variables
+      // from its outer (enclosing) scope even after the outer function
+      // has finished executing.
+
+      // How it works:
+      // 1. When a function is created inside another function,
+      //    the inner function forms a closure.
+      // 2. The inner function "closes over" the variables of the outer function.
+      // 3. Even after the outer function returns, the inner function
+      //    still has access to those variables (they stay in memory).
+
+      // Key Points:
+      // - Closures are created every time a function is created.
+      // - The closed-over variables are NOT copied — the inner function
+      //   holds a reference to the same variable.
+      // - Closures help with data privacy / encapsulation.
+      // - They are commonly used in callbacks, event handlers, and
+      //   factory functions.
+
+      // Lexical Scope:
+      // - JavaScript uses lexical (static) scoping.
+      // - A function's scope is determined by WHERE it is written in code,
+      //   not where it is called from.
+
+      // ========== EXAMPLE ==========
+
+      function outer() {
+        let a = 10;
+        let name = "vikas";
+
+        function inner() {
+          // 'inner' has access to 'a' and 'name' because of closure
+          console.log(a); // 10
+        }
+        return inner; // returning the function (not calling it)
+      }
+
+      // When outer() is called, it returns the inner function.
+      // Even though outer() has finished, 'inner' still remembers 'a' and 'name'.
+      // let result = outer();
+      // result(); // prints 10 — closure in action!
+
+      console.log(a); // ReferenceError: 'a' is not defined here (not in this scope)
+      // console.log(result);
+
+      // ========== USE CASES ==========
+
+      // 1. Data Privacy (Module Pattern)
+      function counter() {
+        let count = 0; // private variable
+        return {
+          increment: function () {
+            count++;
+            return count;
+          },
+          decrement: function () {
+            count--;
+            return count;
+          },
+          getCount: function () {
+            return count;
+          },
+        };
+      }
+      // const myCounter = counter();
+      // myCounter.increment(); // 1
+      // myCounter.increment(); // 2
+      // myCounter.getCount();  // 2
+      // 'count' cannot be accessed directly from outside
+
+      // 2. Function Factory
+      function multiplier(x) {
+        return function (y) {
+          return x * y; // 'x' is remembered via closure
+        };
+      }
+      // const double = multiplier(2);
+      // double(5); // 10
+      // const triple = multiplier(3);
+      // triple(5); // 15
+
+      // ========== COMMON INTERVIEW QUESTION ==========
+
+      // Closure inside a loop (var vs let)
+      // Using var — all callbacks share the same 'i'
+      // for (var i = 0; i < 3; i++) {
+      //   setTimeout(function () {
+      //     console.log(i); // prints 3, 3, 3
+      //   }, 1000);
+      // }
+
+      // Fix with let — each iteration gets its own 'i'
+      // for (let i = 0; i < 3; i++) {
+      //   setTimeout(function () {
+      //     console.log(i); // prints 0, 1, 2
+      //   }, 1000);
+      // }
+
+      // Fix with IIFE (Immediately Invoked Function Expression)
+      // for (var i = 0; i < 3; i++) {
+      //   (function (j) {
+      //     setTimeout(function () {
+      //       console.log(j); // prints 0, 1, 2
+      //     }, 1000);
+      //   })(i);
+      // }
+    </script>
+  </body>
+</html>
