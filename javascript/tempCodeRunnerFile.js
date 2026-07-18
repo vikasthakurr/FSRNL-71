@@ -1,1 +1,1 @@
-et a = 40;
+const p3 = Promise.resolve("hi how r u");
