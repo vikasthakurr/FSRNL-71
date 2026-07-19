@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AbortController in JavaScript</title>
+  </head>
+  <body>
+    <h1>Demo of API Abort</h1>
+    <button id="start">Start API Call</button>
+    <button id="stop">Stop API Call</button>
+    <p id="status"></p>
+
+    <script>
+      // ===========================
+      // AbortController in JavaScript
+      // ===========================
+
+      // ===========================
+      // 1. What is AbortController?
+      // ===========================
+
+      // AbortController is a built-in Web API that allows you to CANCEL
+      // asynchronous operations like fetch requests, event listeners,
+      // or any async task that accepts an AbortSignal.
+
+      // It was introduced to solve the problem of cancelling in-flight
+      // HTTP requests — something that was difficult before (XMLHttpRequest
+      // had .abort(), but fetch did not have a cancellation mechanism initially).
+
+      // ===========================
+      // 2. How It Works
+      // ===========================
+
+      // Step 1: Create a controller instance
+      //   const controller = new AbortController();
+
+      // Step 2: Get the signal from the controller
+      //   const signal = controller.signal;
+
+      // Step 3: Pass the signal to the async operation (e.g., fetch)
+      //   fetch(url, { signal })
+
+      // Step 4: Call controller.abort() to cancel the operation
+      //   controller.abort();
+
+      // When abort() is called:
+      //   - signal.aborted becomes true
+      //   - The fetch promise rejects with an AbortError
+      //   - The network request is actually cancelled (browser stops it)
+
+      // ===========================
+      // 3. Key Properties & Methods
+      // ===========================
+
+      // AbortController:
+      //   - controller.signal   → returns the AbortSignal object
+      //   - controller.abort()  → triggers cancellation
+
+      // AbortSignal:
+      //   - signal.aborted      → boolean, true if abort() was called
+      //   - signal.reason       → the reason passed to abort (optional)
+      //   - signal.addEventListener("abort", handler) → listen for abort event
+      //   - AbortSignal.timeout(ms) → static method, auto-aborts after ms
+
+      // ===========================
+      // 4. Use Cases
+      // ===========================
+
+      // - Cancel fetch requests (user navigates away, types new search query)
+      // - Implement request timeout (abort if response takes too long)
+      // - Cancel previous request in search-as-you-type (debounce + abort)
+      // - Remove event listeners (pass signal to addEventListener)
+      // - Cancel multiple operations with a single controller
+      // - React useEffect cleanup (abort fetch on component unmount)
+
+      // ===========================
+      // 5. Common Patterns
+      // ===========================
+
+      // Pattern A: Cancel previous fetch (search-as-you-type)
+      // let controller;
+      // function search(query) {
+      //   if (controller) controller.abort(); // Cancel previous
+      //   controller = new AbortController();
+      //   fetch(`/api/search?q=${query}`, { signal: controller.signal })
+      //     .then(res => res.json())
+      //     .then(data => renderResults(data))
+      //     .catch(err => {
+      //       if (err.name !== "AbortError") console.error(err);
+      //     });
+      // }
+
+      // Pattern B: Timeout using AbortSignal.timeout()
+      // fetch(url, { signal: AbortSignal.timeout(5000) })
+      //   .then(res => res.json())
+      //   .catch(err => {
+      //     if (err.name === "TimeoutError") console.log("Request timed out");
+      //   });
+
+      // Pattern C: Remove event listener with signal
+      // const controller = new AbortController();
+      // element.addEventListener("click", handler, { signal: controller.signal });
+      // // Later, to remove:
+      // controller.abort(); // Automatically removes the event listener!
+
+      // Pattern D: React useEffect cleanup
+      // useEffect(() => {
+      //   const controller = new AbortController();
+      //   fetch(url, { signal: controller.signal })
+      //     .then(res => res.json())
+      //     .then(setData);
+      //   return () => controller.abort(); // Cleanup on unmount
+      // }, []);
+
+      // ===========================
+      // 6. Error Handling
+      // ===========================
+
+      // When a fetch is aborted, it throws an error with:
+      //   err.name === "AbortError"
+      //
+      // Always check for AbortError to distinguish cancellations
+      // from actual network errors:
+      //
+      // .catch(err => {
+      //   if (err.name === "AbortError") {
+      //     console.log("Request was cancelled");  // Expected, not a real error
+      //   } else {
+      //     console.error("Network error:", err);  // Actual problem
+      //   }
+      // });
+
+      // ===========================
+      // 7. Important Notes
+      // ===========================
+
+      // - Each AbortController is single-use. Once abort() is called,
+      //   you need to create a new AbortController for new requests.
+      // - One controller can cancel MULTIPLE fetch calls if they share
+      //   the same signal.
+      // - AbortController works with fetch, addEventListener, and any
+      //   API that accepts an AbortSignal.
+      // - It's supported in all modern browsers and Node.js 15+.
+
+      // ===========================
+      // 8. Live Demo Below
+      // ===========================
+
+      let controller;
+      let timeoutId;
+
+      document.getElementById("start").addEventListener("click", () => {
+        // Step 1: Create new controller for this request
+        controller = new AbortController();
+        const signal = controller.signal;
+        const status = document.getElementById("status");
+        status.textContent = "Making an API call... please don't cancel!";
+
+        // Step 2: Pass signal to fetch
+        fetch("https://jsonplaceholder.typicode.com/todos", { signal })
+          .then((response) => response.json())
+          .then((data) => {
+            // Simulating delay before showing data
+            timeoutId = setTimeout(() => {
+              status.textContent = JSON.stringify(data.slice(0, 5), null, 2);
+            }, 5000);
+          })
+          .catch((err) => {
+            // Step 3: Handle AbortError separately
+            if (err.name === "AbortError") {
+              clearTimeout(timeoutId);
+              status.textContent = "Oops! You cancelled the request.";
+            } else {
+              status.textContent = "Error: " + err.message;
+            }
+          });
+      });
+
+      document.getElementById("stop").addEventListener("click", () => {
+        // Step 4: Call abort() to cancel the fetch
+        if (controller) {
+          controller.abort();
+        }
+        clearTimeout(timeoutId);
+        document.getElementById("status").textContent = "Request is cancelled!";
+      });
+
+      // ===========================
+      // Summary
+      // ===========================
+      // - AbortController lets you cancel fetch requests & other async ops
+      // - Create controller → get signal → pass to fetch → call abort()
+      // - Aborted fetches throw AbortError (handle it in catch)
+      // - Single-use: create a new controller for each new request
+      // - Great for search-as-you-type, timeouts, React cleanup, and
+      //   preventing stale responses from overwriting fresh data
+    </script>
+  </body>
+</html>

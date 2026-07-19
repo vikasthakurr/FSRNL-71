@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="myButton">Click Me</button>
+    <div id="output"></div>
+
+    <script>
+      function throttle(func, delay) {
+        let inThrottle;
+        let lastFn;
+        let lastTime;
+
+        return function () {
+          const context = this;
+          const args = arguments;
+          if (!inThrottle) {
+            func.apply(context, args);
+            lastTime = Date.now();
+            inThrottle = true;
+          } else {
+            clearTimeout(lastFn);
+            lastFn = setTimeout(
+              function () {
+                if (Date.now() - lastTime >= delay) {
+                  func.apply(context, args);
+                  lastTime = Date.now();
+                }
+              },
+              Math.max(delay - (Date.now() - lastTime), 0),
+            );
+          }
+        };
+      }
+
+      const myButton = document.getElementById("myButton");
+      const outputDiv = document.getElementById("output");
+
+      function printClickTime() {
+        const now = new Date();
+        outputDiv.innerHTML += `Button clicked at: ${now.toLocaleTimeString()}<br>`;
+      }
+
+      // Apply throttling to the printClickTime function with a 1-second delay
+      myButton.addEventListener("click", throttle(printClickTime, 2000));
+    </script>
+  </body>
+</html>
