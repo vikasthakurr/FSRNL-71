@@ -1,0 +1,192 @@
+<!-- WHAT IS BOM? (Browser Object Model)
+  - When you open a webpage, the browser creates a "window" object.
+  - BOM is everything the browser gives you OTHER than the page content.
+  - Think of it like this: the browser is a frame around your webpage.
+    BOM lets you control that frame — the URL bar, back/forward buttons,
+    screen size, popups, timers, etc.
+  - The "window" object is the BOSS — everything in JS lives inside window.
+    Even document (DOM) is actually window.document.
+  - BOM is NOT standardized like DOM, so some things may vary across browsers.
+-->
+
+<!-- BOM - Properties and Methods
+  - BOM allows JavaScript to interact with the browser (not the page content).
+  - The global object is "window" — everything runs inside it.
+  - window.document - the DOM (page content)
+  - window.location - info about the current URL
+    location.href - full URL
+    location.hostname - domain name
+    location.pathname - path after domain
+    location.reload() - reloads the page
+    location.assign("url") - navigates to new URL
+  - window.navigator - info about the browser
+    navigator.userAgent - browser info string
+    navigator.language - browser language
+    navigator.onLine - true/false if online
+  - window.history - browser history
+    history.back() - go back one page
+    history.forward() - go forward one page
+    history.go(-2) - go back 2 pages
+  - window.screen - info about user's screen
+    screen.width, screen.height
+    screen.availWidth, screen.availHeight
+  - window methods:
+    alert("msg") - popup alert
+    confirm("msg") - ok/cancel dialog, returns true/false
+    prompt("msg") - input dialog, returns string or null
+    setTimeout(fn, ms) - run fn once after delay
+    setInterval(fn, ms) - run fn repeatedly
+    clearTimeout(id) / clearInterval(id)
+    window.open("url") / window.close()
+    window.innerWidth / window.innerHeight - viewport size
+    window.scrollTo(x, y) / window.scrollBy(x, y)
+-->
+
+<!-- WHAT IS DOM? (Document Object Model)
+  - When a browser loads an HTML file, it converts the HTML into a tree structure.
+  - Each HTML tag becomes a "node" (object) in this tree.
+  - This tree of objects is called the DOM.
+  - Example: for <body><h1>Hello</h1></body>
+    The tree looks like:
+      document
+        └── html
+              ├── head
+              └── body
+                    └── h1
+                          └── "Hello" (text node)
+  - Why does DOM exist?
+    HTML is just text. The browser can't do anything with plain text.
+    So it parses HTML into objects (DOM) that JavaScript can interact with.
+  - With DOM, JavaScript can:
+    Read what's on the page
+    Change text, styles, attributes
+    Add new elements
+    Remove existing elements
+    React to user actions (clicks, typing, etc.)
+  - "document" is your starting point to access anything in the DOM.
+  - DOM is standardized by W3C, so it works the same across all browsers.
+-->
+
+<!-- DOM (Document Object Model)
+  - DOM represents the HTML page as a tree of nodes/objects.
+  - JavaScript can read, change, add, or remove HTML elements and attributes.
+  - document is the entry point to the DOM.
+-->
+
+<!-- DOM - Selecting Elements
+  - document.getElementById("id") - returns one element by id
+  - document.getElementsByClassName("class") - returns HTMLCollection (live)
+  - document.getElementsByTagName("tag") - returns HTMLCollection (live)
+  - document.querySelector("css-selector") - returns first match
+  - document.querySelectorAll("css-selector") - returns NodeList (static)
+  - HTMLCollection is live (updates when DOM changes), NodeList is static
+-->
+
+<!-- DOM - Traversing (moving between nodes)
+  - parentNode / parentElement - go to parent
+  - childNodes - all child nodes (includes text/comment nodes)
+  - children - only element children (HTMLCollection)
+  - firstChild / firstElementChild
+  - lastChild / lastElementChild
+  - nextSibling / nextElementSibling
+  - previousSibling / previousElementSibling
+-->
+
+<!-- DOM - Creating and Adding Elements
+  - document.createElement("tag") - creates a new element
+  - document.createTextNode("text") - creates a text node
+  - parent.appendChild(child) - adds child at the end
+  - parent.prepend(child) - adds child at the beginning
+  - parent.insertBefore(newNode, referenceNode) - insert before a node
+  - element.append(...nodes) - can append multiple nodes/strings
+  - element.after(node) / element.before(node)
+-->
+
+<!-- DOM - Removing Elements
+  - parent.removeChild(child) - removes child from parent
+  - element.remove() - removes the element itself
+  - parent.replaceChild(newChild, oldChild)
+-->
+
+<!-- DOM - Modifying Content
+  - element.innerHTML - get/set HTML content (parses HTML tags)
+  - element.textContent - get/set text only (ignores HTML)
+  - element.innerText - similar to textContent but respects CSS visibility
+-->
+
+<!-- DOM - Attributes
+  - element.getAttribute("name") - get attribute value
+  - element.setAttribute("name", "value") - set attribute
+  - element.removeAttribute("name") - remove attribute
+  - element.hasAttribute("name") - returns true/false
+  - element.id / element.className - direct access
+  - element.dataset.key - access data-* attributes
+-->
+
+<!-- DOM - Styling
+  - element.style.property = "value" - inline style (camelCase)
+    element.style.color = "red"
+    element.style.fontSize = "20px"
+    element.style.backgroundColor = "blue"
+  - getComputedStyle(element) - get all computed styles
+  - element.classList methods:
+    .add("class") - add a class
+    .remove("class") - remove a class
+    .toggle("class") - toggle a class
+    .contains("class") - check if class exists (true/false)
+    .replace("old", "new") - replace a class
+-->
+
+<!-- DOM - Cloning
+  - element.cloneNode(false) - shallow clone (only the element)
+  - element.cloneNode(true) - deep clone (element + all children)
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .vikas {
+        color: red;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p>item-1</p>
+      <p>item-2</p>
+      <p>item-3</p>
+      <p>item-4</p>
+    </div>
+    <div class="vikas"></div>
+    <!-- <img src="" alt="" /> -->
+
+    <script>
+      //   let container = document.querySelector(".container");
+      //   let result = container.nextSibling;
+      //   console.log(result);
+      //   let img = document.createElement("img");
+      //   //   console.log(img);
+      //   img.setAttribute(
+      //     "src",
+      //     "https://images.pexels.com/photos/38370377/pexels-photo-38370377.jpeg",
+      //   );
+      //   img.setAttribute("width", "400px");
+
+      //   img.removeAttribute("width");
+      //   //   console.log(img);
+      //   document.querySelector(".vikas").appendChild(img);
+      let heading = document.createElement("h1");
+      heading.textContent = "vikas thakur";
+      //   heading.style.color = "red";
+      //   heading.style.fontStyle = "italic";
+      heading.classList.add("vikas");
+      heading.classList.remove("vikas");
+      document.body.appendChild(heading);
+    </script>
+  </body>
+</html>

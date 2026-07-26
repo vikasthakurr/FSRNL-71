@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .result {
+        width: 700px;
+        height: 600px;
+        background-color: beige;
+      }
+      .circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: red;
+        margin: 5px;
+        display: inline-block;
+      }
+      .square {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        display: inline-block;
+      }
+      .rectangle {
+        width: 150px;
+        height: 100px;
+        margin: 10px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      type="text"
+      name=""
+      id="shapeNumber"
+      placeholder="enter no of shape"
+    />
+    <!-- <input
+      type="color"
+      name=""
+      id="shapeColor"
+      placeholder="enter shape color"
+    /> -->
+    <input type="text" name="" id="shapeName" placeholder="enter shape name" />
+    <button id="generate">generate</button>
+    <div class="result"></div>
+
+    <script>
+      document.querySelector("#generate").addEventListener("click", () => {
+        document.querySelector(".result").innerHTML = "";
+        let quantity = document.querySelector("#shapeNumber").value;
+        // let shapeColor = document.querySelector("#shapeColor").value;
+
+        let shapeName = document.querySelector("#shapeName").value;
+        // console.log(quantity, shapeColor, shapeName);
+        let color = ["red", "black", "yellow", "blue"];
+        let randomIndex = color[Math.floor(Math.random() * color.length)];
+        console.log(randomIndex);
+
+        for (let i = 0; i < quantity; i++) {
+          let shape = document.createElement("div");
+          shape.classList.add(shapeName);
+          shape.style.backgroundColor = randomIndex;
+          document.querySelector(".result").appendChild(shape);
+        }
+      });
+    </script>
+  </body>
+</html>

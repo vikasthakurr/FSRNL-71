@@ -1,0 +1,120 @@
+<!-- EVENTS
+  - An event is any action/occurrence in the browser (click, mouseover, keydown, submit, load, scroll etc.)
+  - We attach listeners to respond: element.addEventListener(eventType, callbackFn, options)
+  - Third argument can be boolean or object:
+    true = fires during capturing phase
+    false (default) = fires during bubbling phase
+    { capture: true/false, once: true/false, passive: true/false }
+-->
+
+<!-- EVENT PROPAGATION
+  - When an event fires on a nested element, it travels through the DOM in 3 phases:
+    Phase 1: Capturing (top to target)
+    Phase 2: Target (the actual element that was clicked)
+    Phase 3: Bubbling (target back to top)
+  - Example: document > html > body > div.gp > div.parent > div.child
+    Click on child:
+    Capturing: document > html > body > div.gp > div.parent > div.child
+    Bubbling:  div.child > div.parent > div.gp > body > html > document
+-->
+
+<!-- BUBBLING (default behavior)
+  - After the event fires on the target, it "bubbles up" to ancestors.
+  - addEventListener listens in the bubbling phase by default.
+  - If you click the child, child handler fires first, then parent, then grandparent, up to document.
+  - Example:
+    child.addEventListener("click", () => console.log("child"));
+    parent.addEventListener("click", () => console.log("parent"));
+    gp.addEventListener("click", () => console.log("gp"));
+    Click on child logs: "child", "parent", "gp"
+-->
+
+<!-- CAPTURING / TRICKLING
+  - The event travels DOWN from document to the target element.
+  - To listen during this phase, pass true as 3rd argument:
+    element.addEventListener("click", handler, true)
+  - Capturing fires BEFORE bubbling.
+  - "Trickling" is just another name for capturing (event trickles down the tree).
+  - Example:
+    gp.addEventListener("click", () => console.log("gp"), true);
+    parent.addEventListener("click", () => console.log("parent"), true);
+    child.addEventListener("click", () => console.log("child"), true);
+    Click on child logs: "gp", "parent", "child"
+-->
+
+<!-- EVENT DELEGATION
+  - Instead of attaching listeners to every child, attach ONE listener to a common parent.
+  - The parent catches events that bubble up from its children.
+  - Use event.target to identify which child was actually clicked.
+  - Benefits:
+    Better performance (fewer listeners in memory)
+    Works with dynamically added elements (no need to re-attach)
+    Cleaner code
+  - Example:
+    ul.addEventListener("click", (event) => {
+      if (event.target.tagName === "LI") {
+        console.log("Clicked:", event.target.textContent);
+      }
+    });
+-->
+
+<!-- USEFUL METHODS
+  - event.stopPropagation() - stops event from bubbling/capturing further
+  - event.stopImmediatePropagation() - stops other listeners on same element too
+  - event.preventDefault() - prevents default browser action (form submit, link navigation)
+  - event.target - the element that triggered the event
+  - event.currentTarget - the element the listener is attached to
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .gp {
+        width: 600px;
+        height: 600px;
+        background-color: red;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+      }
+      .parent {
+        width: 50%;
+        height: 50%;
+        background-color: beige;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+      }
+      .child {
+        width: 50%;
+        height: 50%;
+        background-color: blueviolet;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+      }
+    </style>
+  </head>
+  <body class="body">
+    <div class="gp">
+      grandparent
+      <div class="parent">
+        parent
+        <div class="child">child</div>
+      </div>
+    </div>
+    <p id="info"></p>
+    <script>
+      let body = document.querySelector("body");
+      body.addEventListener("click", () => {
+        console.log("gp was clicked");
+        document.querySelector("#info").innerHTML =
+          `${event.target.className} was clicked`;
+      });
+    </script>
+  </body>
+</html>

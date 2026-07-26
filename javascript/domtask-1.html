@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 700px;
+        height: 600px;
+        background-color: beige;
+      }
+      .square {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        margin: 10px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <input id="input" type="text" placeholder="enter any number" />
+    <button id="btn">Generate</button>
+
+    <div class="container"></div>
+
+    <script>
+      /*
+        TASK 1: Generate Squares Dynamically
+        =====================================
+        GOAL: Read a number from the input, then create that many
+        red square <div> elements and add them to the container.
+
+        CONCEPTS PRACTICED:
+        - Reading input values from the DOM
+        - Creating elements with document.createElement()
+        - Adding CSS classes with classList.add()
+        - Appending elements to the DOM with appendChild()
+        - Looping to repeat DOM operations
+      */
+
+      // Select the button element using its id
+      const btn = document.querySelector("#btn");
+
+      // Listen for a click on the button
+      btn.addEventListener("click", () => {
+        // Get the number typed by the user in the input field
+        // .value always returns a string, but < comparison auto-converts it
+        const inputValue = document.querySelector("#input").value;
+
+        // Loop 'inputValue' times to create that many squares
+        for (let i = 0; i < inputValue; i++) {
+          // Create a new <div> element in memory (not yet on the page)
+          const shape = document.createElement("div");
+
+          // Add the "square" CSS class so it gets the red box styling
+          shape.classList.add("square");
+
+          // Append the new div to the container — now it appears on the page
+          document.querySelector(".container").appendChild(shape);
+        }
+      });
+    </script>
+  </body>
+</html>
