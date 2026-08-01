@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="username" type="text" placeholder="enter any github username" />
+    <button id="search">Search User</button>
+    <script>
+      let search = document.querySelector("#search");
+
+      search.addEventListener("click", () => {
+        let username = document.querySelector("#username").value;
+        // console.log(username)
+
+        // if (!username) return;
+
+        fetch(`https://api.github.com/users/${username}`)
+          .then((res) => {
+           return res.json();
+          })
+          .then((data) => {
+            let img= document.createElement("img")
+            img.setAttribute("src",data.avatar_url)
+            img.setAttribute("alt","dp of user")
+
+            document.body.appendChild(img)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+
+    
+    </script>
+  </body>
+</html>

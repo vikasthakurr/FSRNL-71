@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 700px;
+            height: 600px;
+            background-color: beige;
+        }
+        .circle{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+
+    <script>
+        const container=document.querySelector(".container")
+
+        container.addEventListener("click",(e)=>{
+            let colors=["red","yellow","green","purple","black"]
+
+            let randomIndex=colors[Math.floor(Math.random()*colors.length)]
+            // console.log(randomIndex)
+
+            let shape=document.createElement("div")
+            shape.classList.add("circle");
+            shape.style.backgroundColor=randomIndex
+
+
+            shape.style.left=e.clientX-50+"px";
+            shape.style.top=e.clientY-50+"px"
+
+            container.appendChild(shape)
+        })
+    </script>
+</body>
+</html>
