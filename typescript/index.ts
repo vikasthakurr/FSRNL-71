@@ -1,67 +1,63 @@
 export{}
-// let username:String="vikas";
-// username="1234";
-// console.log(username)
-
-// let fullname:any="vikas thakur"
-// fullname=true
-let marks:number=12343
-let price:number=123.566
-
-// let isMarried:boolean=false
-
-// let fruits:string[]=["apple","mango"]
-// fruits.push()
-// let age:number[]=[1,3,4]
-// age.push("vikas")
-// let fruits:Array<string>=["apple","mango","banana"]
-
-// let person:{
+// class student{
 //     name:string;
-//     age:string
-//     ismarried:boolean
-// }={
+//     age:number;
 
-//     name:"vikas",
-//     age:"25",
-//     ismarried:true
-
-// }
-// console.log(person)
-
-// function greet(name:string){
-//     console.log("hello"+name)
-// }
-// greet("vikas")
-
-// function sum(a:number,b:number):number{
-//     return a+b
+//     constructor(name:string,age:number){
+//         this.name=name;
+//         this.age=age
+//     }
+//     print():void{
+//         console.log(`Hi my name is ${this.name} and my age is ${this.age}`)
+//     }
 // }
 
-// let sum=(a:number,b:number):number=>{
-//     return a+b
+// const student1= new student("vikas",26)
+// student1.print()
+
+// class student{
+//     constructor(
+//         public name:string,
+//         public age:number
+//     ){}
+
+//     print(){
+//         console.log(`${this.name} ${this.age}`)
+//     }
 // }
-// console.log(sum(3,4))
+// const s1=new student("vikas",26)
+// console.log(s1.name)
 
-// function sayHi(name:string,age?:number):string{
-//     return `My name is ${name} and i am ${age} years old`
+
+
+//public -> inside class access -yes
+//child->yes
+//outside class access-yes
+
+
+//private inside class access ->yes
+//child->no
+//outside->no
+
+//protected
+//inside class->yes
+//child->yes
+//outside->no
+
+// class user{
+//     constructor(){
+//         console.log("hi user")
+//     }
 // }
-// console.log(sayHi("vikas",30))
 
-// let username:unknown=123
+// @Logger
+// class user{}
 
-// if(typeof username==="string"){
-//     console.log(username.toUpperCase())
-// }
+function Logger(constructor:Function){
+    console.log("hi class has benn creared",constructor.name)
+}
+@Logger
+class Student{
 
-
-// let age:number[]=[1,2,3,4]
-// let name:string[]=["vikas","akash","keshav"]
-// let isMarried:boolean[]=[false,true,false]
-
-// let person:(string |number)[]=["vikas",26,"akash",20,"false"]
-// console.log(person)
-
-//tuple
-// let person:[string ,number]=[25,"vikas"]
-// console.log(person)
+}
+const s1=new Student()

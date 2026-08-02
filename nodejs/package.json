@@ -1,0 +1,18 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "this is first program",
+  "keywords": [
+    "nodejs"
+  ],
+  "license": "ISC",
+  "author": "vikas",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "figlet": "^1.11.4"
+  }
+}
