@@ -13,6 +13,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
     "figlet": "^1.11.4"
   }
 }
