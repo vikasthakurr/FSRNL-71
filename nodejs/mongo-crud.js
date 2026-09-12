@@ -1,7 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-const port = 3000;
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import { allUserLimitter } from "./rate-limit.js";
+
+dotenv.config();
+
+const port = process.env.PORT || 5000;
 
 const app = express();
 app.use(express.json());
@@ -9,9 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //db connection
 mongoose
-  .connect(
-    "mongodb+srv://vikaskumar20012001_db_user:Vikas123@savourykitchen.ntybdvc.mongodb.net/",
-  )
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("connected to database");
   })
@@ -67,13 +71,13 @@ app.get("/api/v1/auth/users", async (req, res) => {
 });
 
 //specfic user
-app.get("/api/v1/users/:id",async(req,res)=>{
-    const {id}=req.params;
-    // const {email}=req.body
-    const user= await User.find(id);
-    if(!user) return res.status(404).json({message:"user not found"});
-    res.status(200).json({message:"specific user",user});
-})
+app.get("/api/v1/users/:id", async (req, res) => {
+  const { id } = req.params;
+  // const {email}=req.body
+  const user = await User.find(id);
+  if (!user) return res.status(404).json({ message: "user not found" });
+  res.status(200).json({ message: "specific user", user });
+});
 
 //login...
 app.post("/api/v1/auth/login", async (req, res) => {
@@ -86,9 +90,57 @@ app.post("/api/v1/auth/login", async (req, res) => {
   const isMatch = await bcrypt.compare(password, existingUser.password);
   if (!isMatch) return res.status(403).json({ message: "invalid credentials" });
 
-  res.status(200).json({ message: "login successful", user: existingUser });
-});
+  //token generation
+  const token = jwt.sign(
+    {
+      id: existingUser._id,
+      email: existingUser.email,
+      role: "admin",
+    },
+    process.env.JWT_SECRET,
+  );
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+  });
 
+  res
+    .status(200)
+    .json({ message: "login successful", user: existingUser, token });
+});
+//verification middleware...
+
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token || !token.startsWith("Bearer")) {
+    return res.status(401).json({ message: "token is not availble" });
+  }
+
+  //bearer sdfghasdfg
+  const tokenValue = token.split(" ")[1];
+
+  try {
+    const isVerified = jwt.verify(tokenValue, process.env.JWT_SECRET);
+    req.user = isVerified;
+    next();
+  } catch (err) {
+    res.status(401).json({ message: "invalid token" });
+  }
+};
+
+//verificaiton route
+app.get("/allusers", verifyToken, allUserLimitter, async (req, res) => {
+  const allUsers = await User.find();
+  if (!allUsers)
+    return res.status(404).json({
+      message: "no user found",
+    });
+  res.status(200).json({
+    message: "alluser data",
+    allUsers,
+  });
+});
 //update...
 app.put("/api/v1/users/update/:id", async (req, res) => {
   try {
@@ -110,14 +162,15 @@ app.put("/api/v1/users/update/:id", async (req, res) => {
 });
 
 //delete....
-app.delete("/api/v1/users/delete/:id",async(req,res)=>{
-    const {id}=req.params;
-    const deletedUser=await User.findByIdAndDelete(id);
+app.delete("/api/v1/users/delete/:id", async (req, res) => {
+  const { id } = req.params;
+  const deletedUser = await User.findByIdAndDelete(id);
 
-    if(!deletedUser) return res.status(501).json({message:"error while deleting the user"});
+  if (!deletedUser)
+    return res.status(501).json({ message: "error while deleting the user" });
 
-    res.status(200).json({message:"user deleted successfully",deletedUser});
-})
+  res.status(200).json({ message: "user deleted successfully", deletedUser });
+});
 app.listen(port, () => {
   console.log("server is up and running");
 });
