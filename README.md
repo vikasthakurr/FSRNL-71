@@ -1,5 +1,14 @@
 ## Welcome, Batch FSRNL-71
 
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square) 
+![GitHub stars](https://img.shields.io/github/stars/vikasthakurr/FSRNL-71?style=flat-square) 
+![GitHub forks](https://img.shields.io/github/forks/vikasthakurr/FSRNL-71?style=flat-square)
+
+
 This repository serves as the central resource for the **FSRNL-71 Full Stack Web Development** batch. Everything you learn in class — notes, code examples, projects, and references — will live here.
 
 The goal is simple: take you from the fundamentals of how the web works all the way to building and deploying complete web applications on your own.
